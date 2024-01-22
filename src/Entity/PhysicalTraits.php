@@ -22,6 +22,9 @@ class PhysicalTraits
     #[ORM\Column(length: 150)]
     private ?string $skinColor = null;
 
+    #[ORM\OneToOne(mappedBy: 'isA', cascade: ['persist', 'remove'])]
+    private ?Hair $idHair = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,23 @@ class PhysicalTraits
     public function setSkinColor(string $skinColor): static
     {
         $this->skinColor = $skinColor;
+
+        return $this;
+    }
+
+    public function getIdHair(): ?Hair
+    {
+        return $this->idHair;
+    }
+
+    public function setIdHair(Hair $idHair): static
+    {
+        // set the owning side of the relation if necessary
+        if ($idHair->getIsA() !== $this) {
+            $idHair->setIsA($this);
+        }
+
+        $this->idHair = $idHair;
 
         return $this;
     }

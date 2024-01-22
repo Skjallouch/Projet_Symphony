@@ -22,6 +22,10 @@ class Recommendation
     #[ORM\Column(length: 150)]
     private ?string $Color = null;
 
+    #[ORM\ManyToOne]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?PhysicalTraits $Corresponds = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +63,18 @@ class Recommendation
     public function setColor(string $Color): static
     {
         $this->Color = $Color;
+
+        return $this;
+    }
+
+    public function getCorresponds(): ?PhysicalTraits
+    {
+        return $this->Corresponds;
+    }
+
+    public function setCorresponds(?PhysicalTraits $Corresponds): static
+    {
+        $this->Corresponds = $Corresponds;
 
         return $this;
     }
