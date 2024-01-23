@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\BlogArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BlogArticleRepository::class)]
@@ -30,6 +32,14 @@ class BlogArticle
 
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $haircut = null;
+
+    #[ORM\ManyToMany(targetEntity: Member::class, inversedBy: 'viewedArticles')]
+    private Collection $isRead;
+
+    public function __construct()
+    {
+        $this->isRead = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -104,6 +114,30 @@ class BlogArticle
     public function setHaircut(?string $haircut): static
     {
         $this->haircut = $haircut;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Member>
+     */
+    public function getIsRead(): Collection
+    {
+        return $this->isRead;
+    }
+
+    public function addIsRead(Member $isRead): static
+    {
+        if (!$this->isRead->contains($isRead)) {
+            $this->isRead->add($isRead);
+        }
+
+        return $this;
+    }
+
+    public function removeIsRead(Member $isRead): static
+    {
+        $this->isRead->removeElement($isRead);
 
         return $this;
     }
