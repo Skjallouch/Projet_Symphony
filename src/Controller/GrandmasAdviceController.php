@@ -11,7 +11,7 @@ class GrandmasAdviceController extends AbstractController
     #[Route('/grandmas/advice', name: 'app_grandmas_advice')]
     public function index(): Response
     {
-        return $this->render('grandmas_advice/index.html.twig', [
+        return $this->render('features/grandmasAdvice.html.twig', [
             'controller_name' => 'GrandmasAdviceController',
         ]);
     }
