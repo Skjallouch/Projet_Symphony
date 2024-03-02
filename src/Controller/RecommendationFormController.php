@@ -8,7 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class RecommendationFormController extends AbstractController
 {
-    #[Route('/recommendation/form', name: 'app_recommendation_form')]
+    #[Route('/recommendations', name: 'app_recommendation_form')]
     public function index(): Response
     {
         return $this->render('features/recommendationForm.html.twig', [
