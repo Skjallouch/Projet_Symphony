@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="text-center text-uppercase">À découvrir: </h1>
+        <hr class="border border-1 opacity-100" style="margin: 1rem auto; width: 130px; border-color: #AB7AC1 !important; ">
+        <div id="carouselHome" class="carousel slide">
+            <div class="carousel-inner">
+                {% for image_batch in photos_caroussel|batch(4) %}
+                    <div class="carousel-item {{ loop.first ? 'active' : '' }}">
+                        <div class="d-flex gap-3">
+                            {% for img in image_batch %}
+                                <img src="{{ asset(img) }}" class="d-block w-25" alt="...">
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" style="color: #AFA4CE;" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Précédent</span>
+            </button>
+            <button class="carousel-control-next" style="color: #AFA4CE;" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Suivant</span>
+            </button>
+        </div>
+    </div>
+    <div class="container my-5" style="width: 50%; margin: 0 auto; font-family: Georgia, serif; ">
+        <div style="background-color: #afa4ce; border-radius: 10px; padding: 20px; color: #000000;">
+            <h2 style="font-family: 'Kaushan Script', cursive;">Découvrez le secret de la confiance en soi grâce à la connaissance de votre visage !</h2>
+            <br>
+            <p>
+                Saviez-vous que votre morphologie faciale peut être la clé pour un look sensationnel ? Ne sous-estimez pas l'importance de comprendre votre propre visage.
+            </p>
+            <p>
+                Imaginez ceci : Si vous avez un visage rond, carré, ou autre, votre maquillage doit s'adapter pour sublimer vos traits uniques. Et que dire de votre coiffure ? Elle peut transformer votre apparence de manière spectaculaire.
+            </p>
+            <p>
+                Apprendre à déterminer la forme de votre visage, c'est ouvrir les portes de la beauté personnalisée. Que ce soit pour choisir la coiffure parfaite, maîtriser l'art du maquillage, ou trouver la meilleure méthode d'épilation pour vos sourcils, cela peut faire toute la différence dans votre style et votre confiance en vous. Découvrez votre potentiel beauté dès maintenant.
+            </p>
+            <br>
+            <div style="text-align: center;">
+                <img src="{{ asset('images/photo_home_lien.jpg') }}" alt="Description de l'image" data-aos="fade-up" data-aos-duration="2000" style="max-width: 60%; height: auto;" />
+                <a href="{{ path('app_recommendation_form') }}" style="display: block; margin-top: 20px;"> Découvrir maintenant la coupe parfaite selon ses traits physiques ! </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const myCarousel = document.querySelector('#carouselHome');
+            new bootstrap.Carousel(myCarousel, {
+                interval: false,
+                wrap: true
+            });
+
+        });
+    </script>
+
+{% endblock %}
+
+
