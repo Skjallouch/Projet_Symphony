@@ -1,8 +1,8 @@
-<header class="d-flex justify-content-center">
+<!--<header class="d-flex justify-content-center">
     <div class="container-fluid bg-light">
 <table width="100%">
     <tr>
-        <td rowspan="5" width="20%"><img src="{{ asset('images/logo_TSM.PNG') }}" height="150"></td>
+        <td rowspan="3" width="20%"><img src="{{ asset('images/logo_TSM.PNG') }}" height="150"></td>
         <td width="0%"></td>
         <td width="40%"></td>
         <td width="10%"></td>
@@ -21,13 +21,7 @@
         <td align="right" style="font-size: 10px">Mon Panier</td>
         <td align="center" style="font-size: 10px">Se connecter</td>
     </tr>
-    <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-    </tr>
+
 </table>
     <ul class="nav nav-pills" style="background-color: #afa4ce ; color: #FFFFFF; justify-content: center">
         <li class="nav-item"><a href="#" class="nav-link" style="color: #FFFFFF;">Nos Actus</a></li>
@@ -37,4 +31,36 @@
         <li class="nav-item"><a href="#" class="nav-link" style="color: #FFFFFF;">A propos de vous</a></li>
     </ul>
     </div>
+</header>
+-->
+<header class="container-fluid bg-light">
+    <div class="d-flex justify-content-between align-items-center py-3">
+
+        <div class="d-flex align-items-center pl-3">
+        <img src="{{ asset('images/logo_TSM.PNG') }}" height="170" alt="Logo">
+        </div>
+        <div class="text-center" style="font-family: 'Apple Chancery', cursive; color: #afa4ce;">
+            <div style="font-family: 'Kaushan Script', cursive; font-size: 38px; color: #afa4ce;">Vos cheveux, notre expertise</div>
+            <div style="font-family: 'Kaushan Script', cursive; font-size: 20px; color: #afa4ce;">Nos superbes recettes maison</div>
+
+        </div>
+        <div class="d-flex align-items-center">
+            <div class="d-flex flex-column align-items-center mx-1">
+                <img src="{{ asset('images/sac-de-courses.png') }}" height="30" alt="Panier">
+                <span style="font-size: 10px;">Mon Panier</span>
+            </div>
+            <div class="d-flex flex-column align-items-center mx-1">
+                <img src="{{ asset('images/connexion.png') }}" height="30" alt="Connexion">
+                <span style="font-size: 10px;">Se connecter</span>
+            </div>
+        </div>
+    </div>
+    <nav class="nav nav-pills justify-content-center" style="background-color: #afa4ce; color: #FFFFFF;">
+        <a href="#" class="nav-item nav-link" style="color: #FFFFFF;">Nos Actus</a>
+        <a href="#" class="nav-item nav-link" style="color: #FFFFFF;">Nos produits phares</a>
+        <a href="#" class="nav-item nav-link" style="color: #FFFFFF;">Nos conseils de grand-mère</a>
+        <a href="#" class="nav-item nav-link" style="color: #FFFFFF;">Nos superbes recettes</a>
+        <a href="#" class="nav-item nav-link" style="color: #FFFFFF;">A propos de vous</a>
+
+    </nav>
 </header>
