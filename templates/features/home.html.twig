@@ -1,6 +1,13 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    <style>
+        .carousel-item {
+            transition: transform 1.2s ease-in-out;
+        }
+    </style>
+
     <div class="container">
         <h1 class="text-center text-uppercase">À découvrir: </h1>
         <hr class="border border-1 opacity-100" style="margin: 1rem auto; width: 130px; border-color: #AB7AC1 !important; ">
@@ -54,6 +61,15 @@
                 interval: false,
                 wrap: true
             });
+
+            /*setInterval(function() {
+                myCarousel.next();
+            }, 2000); // Défile toutes les 2 secondes*/
+
+            setInterval(function() {
+                const nextButton = document.querySelector('#carouselHome .carousel-control-next');
+                nextButton.click();
+            }, 3000); // Défile toutes les 2 secondes
 
         });
     </script>
