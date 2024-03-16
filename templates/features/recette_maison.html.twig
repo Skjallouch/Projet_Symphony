@@ -1,5 +1,4 @@
 
-
 {% extends 'base.html.twig' %}
 
 {% block body %}
@@ -29,12 +28,6 @@
         </div>
     </div>
 
-
-    <!-- Le reste du contenu de recette_maison.html.twig -->
-    <div class="container my-5">
-        <!-- Contenu personnalisé pour recette_maison.html.twig -->
-    </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const myCarousel = document.querySelector('#carouselHome');
@@ -56,63 +49,103 @@
 
 <div class="container my-5">
     <h2 class="text-center" style="font-family: Georgia, serif;">Recettes Capillaires Maison</h2>
-{% set recettes = [
+        {% set recettes = [
+            {
+                'titre': 'Masque hydratant à l\'aloès et à l\'huile de coco',
+                'description': 'Idéal pour hydrater et réparer les cheveux secs.',
+                'ingredients': ['2 cuillères à soupe de gel d\'aloès vera', '1 cuillère à soupe d\'huile de coco'],
+                'etapes': [
+                'Mélangez le gel d\'aloès vera et l\'huile de coco.',
+                'Appliquez sur vos cheveux et couvrez avec un bonnet de douche.',
+                'Laissez agir 30 minutes, puis lavez avec votre shampooing habituel.'
+            ],  'image': 'huile-coco-peau-visage.jpg'
+            },
+            {
+                'titre': 'Masque fortifiant à l\'avocat',
+                'description': 'Renforce et ajoute de la brillance.',
+                'ingredients': ['1 avocat mûr', '1 jaune d’œuf', '1 cuillère à soupe d\'huile d\'olive'],
+                'etapes': [
+                'Écrasez l\'avocat et mélangez-le avec le jaune d\'œuf et l\'huile d\'olive.',
+                'Appliquez sur cheveux humides des racines aux pointes.',
+                'Laissez reposer pendant 20 minutes, puis rincez et lavez.'
+            ], 'image': 'recette_avocat.jpg'
+            },
 
-    {
-        'titre': 'Masque hydratant à l\'aloès et à l\'huile de coco',
-        'description': 'Idéal pour hydrater et réparer les cheveux secs.',
-        'ingredients': ['2 cuillères à soupe de gel d\'aloès vera', '1 cuillère à soupe d\'huile de coco'],
-        'etapes': [
-        'Mélangez le gel d\'aloès vera et l\'huile de coco.',
-        'Appliquez sur vos cheveux et couvrez avec un bonnet de douche.',
-        'Laissez agir 30 minutes, puis lavez avec votre shampooing habituel.'
-    ]
-    },
-    {
-        'titre': 'Masque fortifiant à l\'avocat',
-        'description': 'Renforce et ajoute de la brillance.',
-        'ingredients': ['1 avocat mûr', '1 jaune d’œuf', '1 cuillère à soupe d\'huile d\'olive'],
-        'etapes': [
-        'Écrasez l\'avocat et mélangez-le avec le jaune d\'œuf et l\'huile d\'olive.',
-        'Appliquez sur cheveux humides des racines aux pointes.',
-        'Laissez reposer pendant 20 minutes, puis rincez et lavez.'
-    ]
-    },
+            {
+                'titre': 'Rinçage au vinaigre de cidre',
+                'description': 'Restaure le pH et ajoute de la brillance',
+                'ingredients': ['2 cuillères à soupe de vinaigre de cidre', '1 litre d\'eau'],
+                'etapes': [
+                'Mélangez le vinaigre avec l\'eau.',
+                'Après le shampooing, rincez vos cheveux avec cette solution.',
+                'Rincez à l\'eau froide après quelques minutes'
+            ], 'image': 'vinaigre_cidre.png'
+            },
+            {
+                'titre': 'Masque nourrissant au miel et à l\'huile d\'olive',
+                'description': 'Nourrit en profondeur les cheveux abîmés.',
+                'ingredients': ['3 cuillères à soupe de miel', '2 cuillères à soupe d\'huile d\'olive.'],
+                'etapes': [
+                'Chauffez légèrement le miel et mélangez-le avec l\'huile d\'olive.',
+                'Appliquez sur cheveux humides et laissez agir pendant 30 minutes.',
+                'Lavez avec un shampooing doux.'
+            ], 'image': 'honey.jpg'
+            },
 
-    {
-        'titre': 'Rinçage au vinaigre de cidre',
-        'description': 'Restaure le pH et ajoute de la brillance',
-        'ingredients': ['2 cuillères à soupe de vinaigre de cidre', '1 litre d\'eau'],
-        'etapes': [
-        'Mélangez le vinaigre avec l\'eau.',
-        'Après le shampooing, rincez vos cheveux avec cette solution.',
-        'Rincez à l\'eau froide après quelques minutes'
-    ]
-    }
-        ] %}
+            {
+                'titre': 'Masque stimulant à l\'huile de ricin',
+                'description': 'Favorise la croissance et la densité.',
+                'ingredients': [' 2 cuillères à soupe d\'huile de ricin', '1 cuillère à soupe d\'huile de jojoba.'],
+                'etapes': [
+                'Mélangez les huiles et appliquez sur le cuir chevelu en massant.',
+                'Laissez agir toute la nuit (utilisez un bonnet de douche).',
+                'Lavez le matin suivant.'
+            ], 'image': 'ricin.jpg'
+            },
 
-    {% for recette in recettes %}
-        <div class="my-4" style="background-color: #afa4ce; border-radius: 10px; padding: 20px; color: #ffffff; font-size: 14px; font-family: Georgia, serif; ">
-            <h3>{{ recette.titre }}</h3>
-            <p><strong>Description:</strong> {{ recette.description }}</p>
-            <p><strong>Ingrédients:</strong></p>
-            <ul>
-                {% for ingredient in recette.ingredients %}
-                    <li>{{ ingredient }}</li>
-                {% endfor %}
-            </ul>
-            <p><strong>Étapes:</strong></p>
-            <ol>
-                {% for etape in recette.etapes %}
-                    <li>{{ etape }}</li>
-                {% endfor %}
-            </ol>
-        </div>
-    {% endfor %}
+            {
+                'titre': 'Masque apaisant à la banane et à l\'huile d\'amande',
+                'description': 'Apaise le cuir chevelu irrité et hydrate.',
+                'ingredients': ['1 banane mûre', '2 cuillères à soupe d\'huile d\'amande douce.'],
+                'etapes': [
+                'Écrasez la banane et mélangez avec l\'huile d\'amande.',
+                'Appliquez sur les cheveux et le cuir che',
+            ], 'image': 'ricin.jpg'
+            }
+                ] %}
+
+    <div class="container my-5">
+        {% for recette in recettes %}
+            <div class="recette-container d-flex justify-content-start align-items-start p-3 rounded mb-4" style="background-color: #afa4ce;">
+                <div class="recette-description" style="flex-grow: 1; padding-right: 20px; color: #ffffff;">
+                    <h3>{{ recette.titre }}</h3>
+                    <p><strong>Description:</strong> {{ recette.description }}</p>
+                    <p><strong>Ingrédients:</strong></p>
+                    <ul>
+                        {% for ingredient in recette.ingredients %}
+                            <li>{{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p><strong>Étapes:</strong></p>
+                    <ol>
+                        {% for etape in recette.etapes %}
+                            <li>{{ etape }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+                {% if recette.image %}
+                    <div class="recette-image" style="flex-shrink: 0;">
+                        <img src="{{ asset('images/' ~ recette.image) }}" alt="Image de {{ recette.titre }}" style="max-width: 300px; height: auto; border-radius: 10px;">
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+
     </div>
 
 
 
+</div>
 
 
 
