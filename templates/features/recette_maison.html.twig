@@ -1,30 +1,34 @@
-
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <!--
+
+    {% set photos_caroussel = [
+        {'src': '/public/images/test1.jpeg', 'alt': 'Colorations Naturelles', 'href': '#coloration-naturelle'},
+        {'src': '/public/images/test2.jpeg', 'alt': 'Recettes Maison', 'href': '#recettes-maison'}
+    ] %}
+
     <div class="container">
-        <h1 class="text-center text-uppercase">À découvrir: </h1>
-        <hr class="border border-1 opacity-100" style="margin: 1rem auto; width: 130px; border-color: #AB7AC1 !important; ">
-        <div id="carouselHome" class="carousel slide">
+        <h1 class="text-center text-uppercase">À découvrir:</h1>
+        <hr class="border border-1 opacity-100" style="margin: 1rem auto; width: 130px; border-color: #AB7AC1 !important;">
+        <div id="carouselHome" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
-                {% for image_batch in photos_caroussel|batch(4) %}
+                {% for img in photos_caroussel %}
                     <div class="carousel-item {{ loop.first ? 'active' : '' }}">
-                        <div class="d-flex gap-3">
-                            {% for img in image_batch %}
-                                <img src="{{ asset(img) }}" class="d-block w-25" alt="...">
-                            {% endfor %}
-                        </div>
+                        <a href="{{ img.href }}">
+                            <img src="{{ asset(img.src) }}" class="d-block w-100" alt="{{ img.alt }}" style="max-width: 400px; height: auto;">
+                        </a>
                     </div>
                 {% endfor %}
             </div>
-            <button class="carousel-control-prev" style="color: #AFA4CE;" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
+            <a class="carousel-control-prev" href="#carouselHome" role="button" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Précédent</span>
-            </button>
-            <button class="carousel-control-next" style="color: #AFA4CE;" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
+                <span class="sr-only">Précédent</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselHome" role="button" data-slide="next">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Suivant</span>
-            </button>
+                <span class="sr-only">Suivant</span>
+            </a>
         </div>
     </div>
 
@@ -37,6 +41,29 @@
             });
         });
     </script>
+    -->
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-sm-4">
+                <a href="#recettes-maison">
+                    <img src="{{ asset('images/recette_caroussel/toust.jpg') }}" alt="Recettes Maison" class="img-fluid">
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="#coloration-naturelle">
+                    <img src="{{ asset('images/recette_caroussel/ef6762f424f847f1945fda34442a7ca1.jpg') }}" alt="Colorations Naturelles" class="img-fluid">
+                </a>
+            </div>
+            <div class="col-sm-4">
+                <a href="#section-3">
+                    <img src="{{ asset('images/recette_caroussel/hair_food.jpeg') }}" alt="Section 3" class="img-fluid">
+                </a>
+            </div>
+        </div>
+    </div>
+
+
 
     <div class="container my-5" style="width: 50%; margin: 0 auto; font-family: Georgia, serif;text-align: center; ">
         <div style="background-color: #afa4ce; border-radius: 10px; padding: 20px; color: #ffffff; font-size: 18px">
@@ -47,7 +74,7 @@
         </div>
     </div>
 
-<div class="container my-5">
+<div class="container my-5" id="recettes-maison">
     <h2 class="text-center" style="font-family: Georgia, serif;">Recettes Capillaires Maison</h2>
         {% set recettes = [
             {
@@ -110,13 +137,13 @@
                 'etapes': [
                 'Écrasez la banane et mélangez avec l\'huile d\'amande.',
                 'Appliquez sur les cheveux et le cuir che',
-            ], 'image': 'ricin.jpg'
+            ], 'image': 'amande.jpg'
             }
                 ] %}
 
-    <div class="container my-5">
+    <div class="container my-5" id="recettes-maison">
         {% for recette in recettes %}
-            <div class="recette-container d-flex justify-content-start align-items-start p-3 rounded mb-4" style="background-color: #afa4ce;">
+            <div class="recette-container d-flex justify-content-start align-items-center p-3 rounded mb-4" style="background-color: #afa4ce;">
                 <div class="recette-description" style="flex-grow: 1; padding-right: 20px; color: #ffffff;">
                     <h3>{{ recette.titre }}</h3>
                     <p><strong>Description:</strong> {{ recette.description }}</p>
@@ -135,17 +162,116 @@
                 </div>
                 {% if recette.image %}
                     <div class="recette-image" style="flex-shrink: 0;">
-                        <img src="{{ asset('images/' ~ recette.image) }}" alt="Image de {{ recette.titre }}" style="max-width: 300px; height: auto; border-radius: 10px;">
+                        <img src="{{ asset('images/' ~ recette.image) }}" alt="Image de {{ recette.titre }}" style="max-width: 350px; height: auto; border-radius: 10px; ">
                     </div>
                 {% endif %}
             </div>
         {% endfor %}
 
     </div>
+</div>
 
 
+<div class="container my-5" id="coloration-naturelle">
+    <h2 class="text-center" style="font-family: Georgia, serif;">Colorations Naturelles</h2>
+    <p style="text-align: center; font-family: Georgia, serif;">Illuminez votre chevelure avec l'éclat des colorations naturelles, le secret d'une beauté authentique et d'un soin tout en douceur.</p>
 
 </div>
+
+        {% set colorations = [
+            {
+                'titre': 'Poudre de Henné',
+                'description': 'Le henné est une poudre obtenue à partir des feuilles séchées de la plante Lawsonia inermis. Il est réputé pour ses tons chauds allant du cuivre au bourgogne et est également bénéfique pour la santé du cuir chevelu.',
+                'quantite': ['100 à 200 grammes pour des cheveux de longueur moyenne.'],
+                'utilisation': [
+                'Mélangez la poudre de henné avec de l\'eau chaude ou du jus de citron pour créer une pâte épaisse.',
+                'Laissez reposer jusqu\'à ce que la couleur se libère, ce qui peut prendre plusieurs heures.',
+                'Appliquez sur les cheveux propres et secs, enveloppez d\'un film plastique et laissez poser entre 1 et 6 heures selon l\'intensité souhaitée.'
+            ],  'image': 'henne.jpg',
+                'lien': 'https://www.aroma-zone.com/info/fiche-technique/coloration-vegetale-henne-noir-ebene-bio'
+            },
+
+            {
+                'titre': 'Poudre d\'Indigo',
+                'description': 'L\'indigo est une poudre bleu foncé qui provient des feuilles de l\'indigotier. Utilisé seul, il donne une couleur bleu-noir et peut être mélangé avec du henné pour obtenir différentes teintes de brun.',
+                'quantite': ['100 à 200 grammes, en fonction de si vous l\'utilisez seul ou mélangé avec du henné.'],
+                'utilisation': [
+                'Préparez la poudre d\'indigo en la mélangeant avec de l\'eau tiède jusqu\'à obtenir une pâte.',
+                'Appliquez immédiatement sur les cheveux pour éviter l\'oxydation de la pâte.',
+                'Laissez agir environ 1 à 2 heures avant de rincer.'
+            ],  'image': 'indigo.jpg',
+                'lien': 'https://www.aroma-zone.com/info/fiche-technique/coloration-soin-capillaire-indigo-bio-aroma-zone'
+            },
+
+            {
+                'titre': 'Poudre de Camomille',
+                'description': 'La camomille est appréciée pour ses effets éclaircissants naturels et est idéale pour les cheveux blonds ou clairs.',
+                'quantite': ['Une poignée de fleurs pour une infusion ou 50 à 100 grammes de poudre pour une pâte.'],
+                'utilisation': [
+                'Infusez les fleurs de camomille dans de l\'eau chaude pour créer un rinçage capillaire, ou mélangez la poudre de camomille avec de l\'eau pour former une pâte.',
+                'Appliquez sur les cheveux et laissez poser pendant environ 30 minutes avant de rincer.'
+            ],  'image': 'camomille.jpg',
+                'lien': 'https://www.france-herboristerie.com/shampooings-soins-cheveux/358124-poudre-tinctoriale-camomille-matricaire-centifolia-3537090012110.html?gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0GoiFjr_QZfStzZ0FK8J_5VQbSUg2RTHKt9uwrCMpVHyQh8YjD6SevFEaAmJ0EALw_wcB'
+            },
+            {
+                'titre': 'Poudre Brou de noix',
+                'description': 'Le brou de noix, issu de la coque de la noix, est utilisé pour obtenir des teintes profondes de brun et peut également couvrir les cheveux gris.',
+                'quantite': [' 50 à 100 grammes, selon la longueur des cheveux et l\'intensité désirée.'],
+                'utilisation': [
+                'Mélangez la poudre de brou de noix avec de l\'eau chaude pour obtenir une pâte. Appliquez sur les cheveux et laissez poser pendant au moins une heure. Pour une couleur plus profonde, vous pouvez laisser la pâte sur les cheveux plus longtemps.'
+            ],  'image': 'brou.jpg',
+                'lien': 'https://www.aroma-zone.com/info/fiche-technique/coloration-soin-capillaire-brou-de-noix-poudre-aroma-zone'
+            },
+            {
+                'titre': 'Poudre de Cassia obovata',
+                'description': 'Souvent appelée « henné neutre », la cassia n\'apporte pas beaucoup de couleur aux cheveux, sauf si vous êtes très blond, mais elle est excellente pour la santé capillaire en général.',
+                'quantite': ['100 à 200 grammes pour des cheveux de longueur moyenne.'],
+                'utilisation': [
+                'Mélangez la cassia avec de l\'eau chaude pour former une pâte.',
+                'Appliquez sur les cheveux et laissez poser de 30 minutes à plusieurs heures. Cela dépend si vous recherchez un effet conditionnant ou un léger effet colorant.'
+            ],  'image': 'cassia.jpg',
+                'lien': 'https://www.louis-herboristerie.com/10425-henne-neutre-cassia-feuilles-poudre-100g-tisane-de-cassia-obovata-3760320768918.html?SubmitCurrency=1&id_currency=1&gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0GoidpVe4BDQ52LkGqUEMpsoWpflUoM6L8YkZyhJZ5O6zGDWbraHp1A8aApR2EALw_wcB'
+            },
+
+
+        ] %}
+
+        <div class="container my-5" id="coloration-naturelle">
+            {% for coloration in colorations %}
+                <div class="coloration-container d-flex justify-content-start align-items-center p-3 rounded mb-4" style="background-color: #afa4ce;">
+                    <div class="coloration-description" style="flex-grow: 1; padding-right: 20px; color: #ffffff;">
+                        <h3>{{ coloration.titre }}</h3>
+                        <p><strong>Description:</strong> {{ coloration.description }}</p>
+                        <p><strong>Ingrédients:</strong></p>
+                        <ul>
+                            {% for quant in coloration.quantite %}
+                                <li>{{ quant }}</li>
+                            {% endfor %}
+                        </ul>
+                        <p><strong>Utilisation :</strong></p>
+                        <ol>
+                            {% for util in coloration.utilisation %}
+                                <li>{{ util }}</li>
+                            {% endfor %}
+                        </ol>
+
+                        {% if coloration.lien %}
+                            <p><strong>Accessible ici :</strong> <a href="{{ coloration.lien }}" target="_blank">Voir le produit</a></p>
+                        {% endif %}
+
+                    </div>
+
+                    {% if coloration.image %}
+                        <div class="coloration-image" style="flex-shrink: 0;">
+                            <img src="{{ asset('images/coloration/' ~ coloration.image) }}" alt="Image de {{ coloration.titre }}" style="max-width: 350px; height: auto; border-radius: 10px; ">
+                        </div>
+                    {% endif %}
+
+
+                </div>
+            {% endfor %}
+
+        </div>
 
 
 
