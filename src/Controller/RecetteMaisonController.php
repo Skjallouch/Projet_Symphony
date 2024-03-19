@@ -35,7 +35,7 @@ class RecetteMaisonController extends AbstractController
     public function index(): Response
     {
         $projectDir = $this->getParameter('kernel.project_dir');
-        $imagesDir = $projectDir . '/public/images/recette_caroussel';
+        $imagesDir = $projectDir . '/public/images/nos_superbes_recettes/recette_caroussel';
 
         $finder = new Finder();
         $finder->files()->in($imagesDir);

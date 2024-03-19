@@ -1,81 +1,44 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <!--
-
-    {% set photos_caroussel = [
-        {'src': '/public/images/test1.jpeg', 'alt': 'Colorations Naturelles', 'href': '#coloration-naturelle'},
-        {'src': '/public/images/test2.jpeg', 'alt': 'Recettes Maison', 'href': '#recettes-maison'}
-    ] %}
-
-    <div class="container">
-        <h1 class="text-center text-uppercase">À découvrir:</h1>
-        <hr class="border border-1 opacity-100" style="margin: 1rem auto; width: 130px; border-color: #AB7AC1 !important;">
-        <div id="carouselHome" class="carousel slide" data-ride="carousel">
-            <div class="carousel-inner">
-                {% for img in photos_caroussel %}
-                    <div class="carousel-item {{ loop.first ? 'active' : '' }}">
-                        <a href="{{ img.href }}">
-                            <img src="{{ asset(img.src) }}" class="d-block w-100" alt="{{ img.alt }}" style="max-width: 400px; height: auto;">
-                        </a>
-                    </div>
-                {% endfor %}
-            </div>
-            <a class="carousel-control-prev" href="#carouselHome" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Précédent</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselHome" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Suivant</span>
-            </a>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const myCarousel = document.querySelector('#carouselHome');
-            new bootstrap.Carousel(myCarousel, {
-                interval: false,
-                wrap: true
-            });
-        });
-    </script>
-    -->
-
     <div class="container mt-4">
         <div class="row">
             <div class="col-sm-4">
                 <a href="#recettes-maison">
-                    <img src="{{ asset('images/recette_caroussel/toust.jpg') }}" alt="Recettes Maison" class="img-fluid">
+                    <img src="{{ asset('images/nos_superbes_recettes/recette_caroussel/toust.jpg') }}"
+                         alt="Recettes Maison"
+                         class="img-fluid">
                 </a>
             </div>
             <div class="col-sm-4">
                 <a href="#coloration-naturelle">
-                    <img src="{{ asset('images/recette_caroussel/ef6762f424f847f1945fda34442a7ca1.jpg') }}" alt="Colorations Naturelles" class="img-fluid">
+                    <img src="{{ asset('images/nos_superbes_recettes/recette_caroussel/ef6762f424f847f1945fda34442a7ca1.jpg') }}"
+                         alt="Colorations Naturelles" class="img-fluid">
                 </a>
             </div>
             <div class="col-sm-4">
-                <a href="#section-3">
-                    <img src="{{ asset('images/recette_caroussel/hair_food.jpeg') }}" alt="Section 3" class="img-fluid">
+                <a href="#alimentation-saine">
+                    <img src="{{ asset('images/nos_superbes_recettes/recette_caroussel/hair_food.jpeg') }}"
+                         alt="Section 3" class="img-fluid">
                 </a>
             </div>
+
         </div>
     </div>
 
-
-
+    <!-- intro-->
     <div class="container my-5" style="width: 50%; margin: 0 auto; font-family: Georgia, serif;text-align: center; ">
         <div style="background-color: #afa4ce; border-radius: 10px; padding: 20px; color: #ffffff; font-size: 18px">
-            <p> Nous découvrirons ensemble diverses recettes maison naturelles,  </p>
+            <p> Nous découvrirons ensemble diverses recettes maison naturelles, </p>
             <p> des masques aux soins du cuir chevelu, chacune offrant des </p>
-            <p> bienfaits uniques pour un soin de soi conscient. Préparez-vous  </p>
+            <p> bienfaits uniques pour un soin de soi conscient. Préparez-vous </p>
             <p> à embrasser la beauté au naturel, où chaque ingrédient joue un rôle essentiel ! </p>
         </div>
     </div>
 
-<div class="container my-5" id="recettes-maison">
-    <h2 class="text-center" style="font-family: Georgia, serif;">Recettes Capillaires Maison</h2>
+    <!-- container recette maison-->
+    <div class="container my-5" id="recettes-maison">
+        <h2 class="text-center" style="font-family: Georgia, serif;">Recettes Capillaires Maison</h2>
         {% set recettes = [
             {
                 'titre': 'Masque hydratant à l\'aloès et à l\'huile de coco',
@@ -139,140 +102,273 @@
                 'Appliquez sur les cheveux et le cuir che',
             ], 'image': 'amande.jpg'
             }
-                ] %}
-
-    <div class="container my-5" id="recettes-maison">
-        {% for recette in recettes %}
-            <div class="recette-container d-flex justify-content-start align-items-center p-3 rounded mb-4" style="background-color: #afa4ce;">
-                <div class="recette-description" style="flex-grow: 1; padding-right: 20px; color: #ffffff;">
-                    <h3>{{ recette.titre }}</h3>
-                    <p><strong>Description:</strong> {{ recette.description }}</p>
-                    <p><strong>Ingrédients:</strong></p>
-                    <ul>
-                        {% for ingredient in recette.ingredients %}
-                            <li>{{ ingredient }}</li>
-                        {% endfor %}
-                    </ul>
-                    <p><strong>Étapes:</strong></p>
-                    <ol>
-                        {% for etape in recette.etapes %}
-                            <li>{{ etape }}</li>
-                        {% endfor %}
-                    </ol>
-                </div>
-                {% if recette.image %}
-                    <div class="recette-image" style="flex-shrink: 0;">
-                        <img src="{{ asset('images/' ~ recette.image) }}" alt="Image de {{ recette.titre }}" style="max-width: 350px; height: auto; border-radius: 10px; ">
-                    </div>
-                {% endif %}
-            </div>
-        {% endfor %}
-
-    </div>
-</div>
-
-
-<div class="container my-5" id="coloration-naturelle">
-    <h2 class="text-center" style="font-family: Georgia, serif;">Colorations Naturelles</h2>
-    <p style="text-align: center; font-family: Georgia, serif;">Illuminez votre chevelure avec l'éclat des colorations naturelles, le secret d'une beauté authentique et d'un soin tout en douceur.</p>
-
-</div>
-
-        {% set colorations = [
-            {
-                'titre': 'Poudre de Henné',
-                'description': 'Le henné est une poudre obtenue à partir des feuilles séchées de la plante Lawsonia inermis. Il est réputé pour ses tons chauds allant du cuivre au bourgogne et est également bénéfique pour la santé du cuir chevelu.',
-                'quantite': ['100 à 200 grammes pour des cheveux de longueur moyenne.'],
-                'utilisation': [
-                'Mélangez la poudre de henné avec de l\'eau chaude ou du jus de citron pour créer une pâte épaisse.',
-                'Laissez reposer jusqu\'à ce que la couleur se libère, ce qui peut prendre plusieurs heures.',
-                'Appliquez sur les cheveux propres et secs, enveloppez d\'un film plastique et laissez poser entre 1 et 6 heures selon l\'intensité souhaitée.'
-            ],  'image': 'henne.jpg',
-                'lien': 'https://www.aroma-zone.com/info/fiche-technique/coloration-vegetale-henne-noir-ebene-bio'
-            },
-
-            {
-                'titre': 'Poudre d\'Indigo',
-                'description': 'L\'indigo est une poudre bleu foncé qui provient des feuilles de l\'indigotier. Utilisé seul, il donne une couleur bleu-noir et peut être mélangé avec du henné pour obtenir différentes teintes de brun.',
-                'quantite': ['100 à 200 grammes, en fonction de si vous l\'utilisez seul ou mélangé avec du henné.'],
-                'utilisation': [
-                'Préparez la poudre d\'indigo en la mélangeant avec de l\'eau tiède jusqu\'à obtenir une pâte.',
-                'Appliquez immédiatement sur les cheveux pour éviter l\'oxydation de la pâte.',
-                'Laissez agir environ 1 à 2 heures avant de rincer.'
-            ],  'image': 'indigo.jpg',
-                'lien': 'https://www.aroma-zone.com/info/fiche-technique/coloration-soin-capillaire-indigo-bio-aroma-zone'
-            },
-
-            {
-                'titre': 'Poudre de Camomille',
-                'description': 'La camomille est appréciée pour ses effets éclaircissants naturels et est idéale pour les cheveux blonds ou clairs.',
-                'quantite': ['Une poignée de fleurs pour une infusion ou 50 à 100 grammes de poudre pour une pâte.'],
-                'utilisation': [
-                'Infusez les fleurs de camomille dans de l\'eau chaude pour créer un rinçage capillaire, ou mélangez la poudre de camomille avec de l\'eau pour former une pâte.',
-                'Appliquez sur les cheveux et laissez poser pendant environ 30 minutes avant de rincer.'
-            ],  'image': 'camomille.jpg',
-                'lien': 'https://www.france-herboristerie.com/shampooings-soins-cheveux/358124-poudre-tinctoriale-camomille-matricaire-centifolia-3537090012110.html?gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0GoiFjr_QZfStzZ0FK8J_5VQbSUg2RTHKt9uwrCMpVHyQh8YjD6SevFEaAmJ0EALw_wcB'
-            },
-            {
-                'titre': 'Poudre Brou de noix',
-                'description': 'Le brou de noix, issu de la coque de la noix, est utilisé pour obtenir des teintes profondes de brun et peut également couvrir les cheveux gris.',
-                'quantite': [' 50 à 100 grammes, selon la longueur des cheveux et l\'intensité désirée.'],
-                'utilisation': [
-                'Mélangez la poudre de brou de noix avec de l\'eau chaude pour obtenir une pâte. Appliquez sur les cheveux et laissez poser pendant au moins une heure. Pour une couleur plus profonde, vous pouvez laisser la pâte sur les cheveux plus longtemps.'
-            ],  'image': 'brou.jpg',
-                'lien': 'https://www.aroma-zone.com/info/fiche-technique/coloration-soin-capillaire-brou-de-noix-poudre-aroma-zone'
-            },
-            {
-                'titre': 'Poudre de Cassia obovata',
-                'description': 'Souvent appelée « henné neutre », la cassia n\'apporte pas beaucoup de couleur aux cheveux, sauf si vous êtes très blond, mais elle est excellente pour la santé capillaire en général.',
-                'quantite': ['100 à 200 grammes pour des cheveux de longueur moyenne.'],
-                'utilisation': [
-                'Mélangez la cassia avec de l\'eau chaude pour former une pâte.',
-                'Appliquez sur les cheveux et laissez poser de 30 minutes à plusieurs heures. Cela dépend si vous recherchez un effet conditionnant ou un léger effet colorant.'
-            ],  'image': 'cassia.jpg',
-                'lien': 'https://www.louis-herboristerie.com/10425-henne-neutre-cassia-feuilles-poudre-100g-tisane-de-cassia-obovata-3760320768918.html?SubmitCurrency=1&id_currency=1&gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0GoidpVe4BDQ52LkGqUEMpsoWpflUoM6L8YkZyhJZ5O6zGDWbraHp1A8aApR2EALw_wcB'
-            },
-
-
         ] %}
 
-        <div class="container my-5" id="coloration-naturelle">
-            {% for coloration in colorations %}
-                <div class="coloration-container d-flex justify-content-start align-items-center p-3 rounded mb-4" style="background-color: #afa4ce;">
-                    <div class="coloration-description" style="flex-grow: 1; padding-right: 20px; color: #ffffff;">
-                        <h3>{{ coloration.titre }}</h3>
-                        <p><strong>Description:</strong> {{ coloration.description }}</p>
+        <div class="container my-5" id="recettes-maison">
+            {% for recette in recettes %}
+                <div class="recette-container d-flex justify-content-start align-items-center p-3 rounded mb-4"
+                     style="background-color: #afa4ce;">
+                    <div class="recette-description" style="flex-grow: 1; padding-right: 20px; color: #ffffff;">
+                        <h3>{{ recette.titre }}</h3>
+                        <p><strong>Description:</strong> {{ recette.description }}</p>
                         <p><strong>Ingrédients:</strong></p>
                         <ul>
-                            {% for quant in coloration.quantite %}
-                                <li>{{ quant }}</li>
+                            {% for ingredient in recette.ingredients %}
+                                <li>{{ ingredient }}</li>
                             {% endfor %}
                         </ul>
-                        <p><strong>Utilisation :</strong></p>
+                        <p><strong>Étapes:</strong></p>
                         <ol>
-                            {% for util in coloration.utilisation %}
-                                <li>{{ util }}</li>
+                            {% for etape in recette.etapes %}
+                                <li>{{ etape }}</li>
                             {% endfor %}
                         </ol>
-
-                        {% if coloration.lien %}
-                            <p><strong>Accessible ici :</strong> <a href="{{ coloration.lien }}" target="_blank">Voir le produit</a></p>
-                        {% endif %}
-
                     </div>
-
-                    {% if coloration.image %}
-                        <div class="coloration-image" style="flex-shrink: 0;">
-                            <img src="{{ asset('images/coloration/' ~ coloration.image) }}" alt="Image de {{ coloration.titre }}" style="max-width: 350px; height: auto; border-radius: 10px; ">
+                    {% if recette.image %}
+                        <div class="recette-image" style="flex-shrink: 0;">
+                            <img src="{{ asset('images/nos_superbes_recettes/recette_capillaire_maison/' ~ recette.image) }}"
+                                 alt="Image de {{ recette.titre }}"
+                                 style="max-width: 350px; height: auto; border-radius: 10px; ">
                         </div>
                     {% endif %}
-
-
                 </div>
             {% endfor %}
 
         </div>
+    </div>
+
+    <!-- container coloration-->
+    <div class="container my-5" id="coloration-naturelle">
+        <h2 class="text-center" style="font-family: Georgia, serif;">Colorations Naturelles</h2>
+        <p style="text-align: center; font-family: Georgia, serif;">Illuminez votre chevelure avec l'éclat des
+            colorations naturelles, le secret d'une beauté authentique et d'un soin tout en douceur.</p>
+
+    </div>
+
+    {% set colorations = [
+        {
+            'titre': 'Poudre de Henné',
+            'description': 'Le henné est une poudre obtenue à partir des feuilles séchées de la plante Lawsonia inermis. Il est réputé pour ses tons chauds allant du cuivre au bourgogne et est également bénéfique pour la santé du cuir chevelu.',
+            'quantite': ['100 à 200 grammes pour des cheveux de longueur moyenne.'],
+            'utilisation': [
+            'Mélangez la poudre de henné avec de l\'eau chaude ou du jus de citron pour créer une pâte épaisse.',
+            'Laissez reposer jusqu\'à ce que la couleur se libère, ce qui peut prendre plusieurs heures.',
+            'Appliquez sur les cheveux propres et secs, enveloppez d\'un film plastique et laissez poser entre 1 et 6 heures selon l\'intensité souhaitée.'
+        ],  'image': 'henne.jpg',
+            'lien': 'https://www.aroma-zone.com/info/fiche-technique/coloration-vegetale-henne-noir-ebene-bio'
+        },
+
+        {
+            'titre': 'Poudre d\'Indigo',
+            'description': 'L\'indigo est une poudre bleu foncé qui provient des feuilles de l\'indigotier. Utilisé seul, il donne une couleur bleu-noir et peut être mélangé avec du henné pour obtenir différentes teintes de brun.',
+            'quantite': ['100 à 200 grammes, en fonction de si vous l\'utilisez seul ou mélangé avec du henné.'],
+            'utilisation': [
+            'Préparez la poudre d\'indigo en la mélangeant avec de l\'eau tiède jusqu\'à obtenir une pâte.',
+            'Appliquez immédiatement sur les cheveux pour éviter l\'oxydation de la pâte.',
+            'Laissez agir environ 1 à 2 heures avant de rincer.'
+        ],  'image': 'indigo.jpg',
+            'lien': 'https://www.aroma-zone.com/info/fiche-technique/coloration-soin-capillaire-indigo-bio-aroma-zone'
+        },
+
+        {
+            'titre': 'Poudre de Camomille',
+            'description': 'La camomille est appréciée pour ses effets éclaircissants naturels et est idéale pour les cheveux blonds ou clairs.',
+            'quantite': ['Une poignée de fleurs pour une infusion ou 50 à 100 grammes de poudre pour une pâte.'],
+            'utilisation': [
+            'Infusez les fleurs de camomille dans de l\'eau chaude pour créer un rinçage capillaire, ou mélangez la poudre de camomille avec de l\'eau pour former une pâte.',
+            'Appliquez sur les cheveux et laissez poser pendant environ 30 minutes avant de rincer.'
+        ],  'image': 'camomille.jpg',
+            'lien': 'https://www.france-herboristerie.com/shampooings-soins-cheveux/358124-poudre-tinctoriale-camomille-matricaire-centifolia-3537090012110.html?gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0GoiFjr_QZfStzZ0FK8J_5VQbSUg2RTHKt9uwrCMpVHyQh8YjD6SevFEaAmJ0EALw_wcB'
+        },
+        {
+            'titre': 'Poudre Brou de noix',
+            'description': 'Le brou de noix, issu de la coque de la noix, est utilisé pour obtenir des teintes profondes de brun et peut également couvrir les cheveux gris.',
+            'quantite': [' 50 à 100 grammes, selon la longueur des cheveux et l\'intensité désirée.'],
+            'utilisation': [
+            'Mélangez la poudre de brou de noix avec de l\'eau chaude pour obtenir une pâte. Appliquez sur les cheveux et laissez poser pendant au moins une heure. Pour une couleur plus profonde, vous pouvez laisser la pâte sur les cheveux plus longtemps.'
+        ],  'image': 'brou.jpg',
+            'lien': 'https://www.aroma-zone.com/info/fiche-technique/coloration-soin-capillaire-brou-de-noix-poudre-aroma-zone'
+        },
+        {
+            'titre': 'Poudre de Cassia obovata',
+            'description': 'Souvent appelée « henné neutre », la cassia n\'apporte pas beaucoup de couleur aux cheveux, sauf si vous êtes très blond, mais elle est excellente pour la santé capillaire en général.',
+            'quantite': ['100 à 200 grammes pour des cheveux de longueur moyenne.'],
+            'utilisation': [
+            'Mélangez la cassia avec de l\'eau chaude pour former une pâte.',
+            'Appliquez sur les cheveux et laissez poser de 30 minutes à plusieurs heures. Cela dépend si vous recherchez un effet conditionnant ou un léger effet colorant.'
+        ],  'image': 'cassia.jpg',
+            'lien': 'https://www.louis-herboristerie.com/10425-henne-neutre-cassia-feuilles-poudre-100g-tisane-de-cassia-obovata-3760320768918.html?SubmitCurrency=1&id_currency=1&gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0GoidpVe4BDQ52LkGqUEMpsoWpflUoM6L8YkZyhJZ5O6zGDWbraHp1A8aApR2EALw_wcB'
+        },
 
 
+    ] %}
+
+    <div class="container my-5" id="coloration-naturelle">
+        {% for coloration in colorations %}
+            <div class="coloration-container d-flex justify-content-start align-items-center p-3 rounded mb-4"
+                 style="background-color: #afa4ce;">
+                <div class="coloration-description" style="flex-grow: 1; padding-right: 20px; color: #ffffff;">
+                    <h3>{{ coloration.titre }}</h3>
+                    <p><strong>Description:</strong> {{ coloration.description }}</p>
+                    <p><strong>Ingrédients:</strong></p>
+                    <ul>
+                        {% for quant in coloration.quantite %}
+                            <li>{{ quant }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p><strong>Utilisation :</strong></p>
+                    <ol>
+                        {% for util in coloration.utilisation %}
+                            <li>{{ util }}</li>
+                        {% endfor %}
+                    </ol>
+
+                    {% if coloration.lien %}
+                        <p><strong>Accessible ici :</strong> <a href="{{ coloration.lien }}" target="_blank">Voir le
+                                produit</a></p>
+                    {% endif %}
+
+                </div>
+
+                {% if coloration.image %}
+                    <div class="coloration-image" style="flex-shrink: 0;">
+                        <img src="{{ asset('images/nos_superbes_recettes/coloration/' ~ coloration.image) }}"
+                             alt="Image de {{ coloration.titre }}"
+                             style="max-width: 350px; height: auto; border-radius: 10px; ">
+                    </div>
+                {% endif %}
+
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <!--container aliment-->
+    <div class="container my-5" id="alimentation-saine">
+        <h2 class="text-center" style="font-family: Georgia, serif;">Alimentation Saine pour des Cheveux Forts</h2>
+        <p style="text-align: center; font-family: Georgia, serif;">Découvrez comment certains aliments peuvent
+            favoriser la santé et la croissance de vos cheveux grâce à leurs nutriments essentiels.</p>
+
+        <div style="background-color: #afa4ce; padding: 20px; border-radius: 10px; color: #ffffff">
+            <h3>1. Saumon</h3>
+            <p><strong>Description :</strong> Le saumon est riche en protéines, oméga-3 et vitamine D, essentiels pour
+                une chevelure forte et saine. Les acides gras oméga-3 favorisent la croissance des cheveux en
+                nourrissant le follicule pileux et réduisent l'inflammation qui peut conduire à la perte de cheveux.</p>
+            <p><strong>Quand le manger :</strong> Le saumon peut être consommé au déjeuner ou au dîner. Incorporer le
+                saumon dans votre alimentation 2 à 3 fois par semaine peut aider à promouvoir la santé des cheveux.</p>
+        </div>
+        <br>
+
+        <div style="background-color: #afa4ce; padding: 20px; border-radius: 10px; color: #ffffff">
+            <h3>2. Épinards</h3>
+            <p><strong>Description :</strong> Les épinards sont chargés de nutriments tels que le fer, le folate, la
+                vitamine A et la vitamine C, tous nécessaires pour des cheveux sains. Le fer aide les globules rouges à
+                transporter l'oxygène aux cellules, y compris les follicules pileux, ce qui est essentiel pour la santé
+                des cheveux.</p>
+            <p><strong>Quand le manger :</strong> Les épinards peuvent être intégrés dans les repas comme une salade au
+                déjeuner ou sautés comme accompagnement au dîner.</p>
+        </div>
+        <br>
+
+        <div style="background-color: #afa4ce; padding: 20px; border-radius: 10px; color: #ffffff">
+            <h3>3. Avocats</h3>
+            <p><strong>Description :</strong> Les avocats sont une excellente source de vitamine E et d'acides gras
+                essentiels, qui sont importants pour la croissance des cheveux. La vitamine E est un puissant
+                antioxydant qui combat le stress oxydatif en neutralisant les radicaux libres.</p>
+            <p><strong>Quand le manger :</strong> Les avocats peuvent être consommés à tout moment de la journée, que ce
+                soit au petit-déjeuner dans un toast à l'avocat, en salade au déjeuner ou en guacamole comme collation.
+            </p>
+        </div>
+        <br>
+
+        <div style="background-color: #afa4ce; padding: 20px; border-radius: 10px; color: #ffffff">
+            <h3>4. Graines de Chia</h3>
+            <p><strong>Description :</strong> Les graines de chia sont une excellente source d'oméga-3, de fibres, de
+                protéines, de zinc et d'antioxydants. Le zinc en particulier joue un rôle crucial dans la croissance et
+                la réparation des tissus capillaires.</p>
+            <p><strong>Quand le manger :</strong> Intégrez les graines de chia dans votre petit-déjeuner, par exemple
+                dans des smoothies, des yaourts ou des puddings de chia.</p>
+        </div>
+        <br>
+
+        <div style="background-color: #afa4ce; padding: 20px; border-radius: 10px; color: #ffffff">
+            <h3>5. Noix et Graines</h3>
+            <p><strong>Description :</strong> Les noix et les graines sont remplies de protéines, de zinc, de vitamines
+                B, et d'acides gras essentiels oméga-3 et oméga-6, qui sont tous vitaux pour la santé des cheveux. Ils
+                aident à promouvoir des cheveux plus épais et plus forts.</p>
+            <p><strong>Quand le manger :</strong> Les noix et les graines font d'excellentes collations tout au long de
+                la journée ou peuvent être ajoutées à des salades ou des plats principaux pour un croquant nutritif.</p>
+        </div>
+        <br>
+
+        <div style="background-color: #afa4ce; padding: 20px; border-radius: 10px; color: #ffffff">
+            <h3>6. Œufs</h3>
+            <p><strong>Description :</strong> Les œufs sont une source formidable de protéines et de biotine, deux
+                nutriments essentiels pour la croissance des cheveux. La biotine est nécessaire à la production de
+                kératine, une protéine capillaire.</p>
+        </div>
+
+    </div>
+
+    <!-- container bonus recette aliment -->
+    <div class="container my-5" id="recette-saine">
+        <h2 class="text-center" style="font-family: Georgia, serif;">Alimentation Saine pour des Cheveux Forts</h2>
+    </div>
+
+    {% set alimentations = [
+        {
+            'titre': 'Saumon Grillé aux Herbes',
+            'description': 'Riche en oméga-3, en protéines, en vitamine B et en fer, le saumon contribue à la santé du cuir chevelu et favorise une chevelure dense et brillante. Les oméga-3 ont des propriétés anti-inflammatoires qui peuvent aider à ouvrir les follicules pileux, favorisant ainsi la croissance des cheveux.',
+            'consommation': 'Idéal pour le déjeuner ou le dîner, consommez 200 grammes de saumon deux à trois fois par semaine pour de meilleurs résultats.',
+            'etapes': [
+            'Assaisonnez 200g de filet de saumon avec du sel, du poivre, du jus de citron, et un mélange d\'herbes fraîches.',
+            'Chauffez une poêle à feu moyen avec un peu d\'huile d\'olive.',
+            'Placez le saumon dans la poêle, côté peau en bas, et faites-le griller pendant 3-4 minutes.',
+            'Retournez le saumon délicatement et laissez cuire encore 3-4 minutes, jusqu\'à ce qu\'il soit bien cuit.',
+            'Servez chaud, accompagné d\'une salade verte ou de légumes vapeur.'
+        ],
+            'image': 'salmon.jpg'
+        },{
+            'titre': 'Salade d\'Épinards et Avocat',
+            'description': 'Les épinards sont une excellente source de vitamines A et C, qui contribuent à la production de sébum, le conditionneur naturel du cuir chevelu. L\'avocat est riche en vitamines E et en acides gras essentiels, qui nourrissent et renforcent les cheveux, les rendant moins sujets à la casse.',
+            'consommation': 'Parfaite comme entrée ou plat léger pour le déjeuner. Consommez cette salade régulièrement pour nourrir vos cheveux de l\'intérieur.',
+            'etapes': [
+                'Lavez 200g d\'épinards frais et placez-les dans un saladier.',
+                'Coupez un avocat mûr en dés et ajoutez-le aux épinards.',
+                'Pour la vinaigrette, mélangez 2 cuillères à soupe d\'huile d\'olive, 1 cuillère à soupe de vinaigre balsamique, du sel et du poivre.',
+                'Versez la vinaigrette sur la salade et mélangez délicatement.',
+                'Optionnel : ajoutez des tranches de pomme ou de noix pour plus de texture.'
+            ],
+            'image': 'epinard.jpg'
+        }
+
+    ] %}
+
+    <div class="container my-5" id="alimentation-benefique">
+        {% for alimentation in alimentations %}
+            <div class="alimentation-container d-flex justify-content-start align-items-center p-3 rounded mb-4"
+                 style="background-color: #afa4ce;">
+                <div class="alimentation-description" style="flex-grow: 1; padding-right: 20px; color: #ffffff;">
+                    <h3>{{ alimentation.titre }}</h3>
+                    <p><strong>Description:</strong> {{ alimentation.description }}</p>
+                    <p><strong>Quand le manger:</strong> {{ alimentation.consommation }}</p>
+                    <p><strong>Etapes de préparation:</strong></p>
+                    <ol>
+                        {% for etape in alimentation.etapes %}
+                            <li>{{ etape }}</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+                {% if alimentation.image %}
+                    <div class="alimentation-image" style="flex-shrink: 0;">
+                        <img src="{{ asset('images/nos_superbes_recettes/aliment/' ~ alimentation.image) }}"
+                             alt="Image de {{ alimentation.titre }}"
+                             style="max-width: 350px; height: auto; border-radius: 10px;">
+                    </div>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
 
 {% endblock %}
