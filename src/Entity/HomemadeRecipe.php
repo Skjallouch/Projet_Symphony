@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\HomemadeRecipeRepository;
+use Doctrine\DBAL\Types\TextType;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: HomemadeRecipeRepository::class)]
@@ -22,7 +23,7 @@ class HomemadeRecipe
     #[ORM\Column(length: 150)]
     private ?string $effectHair = null;
 
-    #[ORM\Column(length: 50000)]
+    #[ORM\Column(type: "text")]
     private ?string $preparation = null;
 
     public function getId(): ?int
