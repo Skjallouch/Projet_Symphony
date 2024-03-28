@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New PhysicalTraits{% endblock %}
+
+{% block body %}
+    <h1>Create new PhysicalTraits</h1>
+
+    {{ include('physical_traits/_form.html.twig') }}
+
+    <a href="{{ path('app_physical_traits_index') }}">back to list</a>
+{% endblock %}

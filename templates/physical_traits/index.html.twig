@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PhysicalTraits index{% endblock %}
+
+{% block body %}
+    <h1>PhysicalTraits index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>FaceShape</th>
+                <th>EyeColor</th>
+                <th>SkinColor</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for physical_trait in physical_traits %}
+            <tr>
+                <td>{{ physical_trait.id }}</td>
+                <td>{{ physical_trait.faceShape }}</td>
+                <td>{{ physical_trait.eyeColor }}</td>
+                <td>{{ physical_trait.skinColor }}</td>
+                <td>
+                    <a href="{{ path('app_physical_traits_show', {'id': physical_trait.id}) }}">show</a>
+                    <a href="{{ path('app_physical_traits_edit', {'id': physical_trait.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_physical_traits_new') }}">Create new</a>
+{% endblock %}

@@ -17,7 +17,7 @@ class MemberController extends AbstractController
     #[Route('/', name: 'app_member_index', methods: ['GET'])]
     public function index(MemberRepository $memberRepository): Response
     {
-        return $this->render('features/createAccount.html.twig', [
+        return $this->render('member/index.html.twig', [
             'members' => $memberRepository->findAll(),
         ]);
     }
@@ -57,6 +57,7 @@ class MemberController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             $entityManager->flush();
 
             return $this->redirectToRoute('app_member_index', [], Response::HTTP_SEE_OTHER);
