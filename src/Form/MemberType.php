@@ -18,11 +18,13 @@ class MemberType extends AbstractType
             ->add('lastName')
             ->add('email')
             ->add('password')
+            /*
             ->add('viewedArticles', EntityType::class, [
                 'class' => BlogArticle::class,
 'choice_label' => 'id',
 'multiple' => true,
             ])
+            */
         ;
     }
 
