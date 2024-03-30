@@ -7,9 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: MemberRepository::class)]
-class Member implements PasswordAuthenticatedUserInterface
+class Member implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -34,6 +35,11 @@ class Member implements PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: BlogArticle::class, mappedBy: 'isRead')]
     private Collection $viewedArticles;
 
+    /**
+     * @ORM\Column(type="json")
+     */
+    private array $roles = [];
+
     public function __construct()
     {
         $this->Has = new ArrayCollection();
@@ -50,7 +56,7 @@ class Member implements PasswordAuthenticatedUserInterface
         return $this->firstName;
     }
 
-    public function setFirstName(string $firstName): static
+    public function setFirstName(string $firstName): self
     {
         $this->firstName = $firstName;
 
@@ -62,7 +68,7 @@ class Member implements PasswordAuthenticatedUserInterface
         return $this->lastName;
     }
 
-    public function setLastName(string $lastName): static
+    public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
 
@@ -74,7 +80,7 @@ class Member implements PasswordAuthenticatedUserInterface
         return $this->email;
     }
 
-    public function setEmail(string $email): static
+    public function setEmail(string $email): self
     {
         $this->email = $email;
 
@@ -86,67 +92,44 @@ class Member implements PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    public function setPassword(string $password): static
+    public function setPassword(string $password): self
     {
         $this->password = $password;
 
         return $this;
     }
 
-    /**
-     * @return Collection<int, Address>
-     */
-    public function getHas(): Collection
+    public function getRoles(): array
     {
-        return $this->Has;
+        $roles = $this->roles;
+        // garantir que chaque utilisateur a au moins le rôle ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
     }
 
-    public function addHa(Address $ha): static
+    public function setRoles(array $roles): self
     {
-        if (!$this->Has->contains($ha)) {
-            $this->Has->add($ha);
-            $ha->setIdMember($this);
-        }
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function removeHa(Address $ha): static
+    public function getSalt()
     {
-        if ($this->Has->removeElement($ha)) {
-            // set the owning side to null (unless already changed)
-            if ($ha->getIdMember() === $this) {
-                $ha->setIdMember(null);
-            }
-        }
-
-        return $this;
+        // Vous pouvez laisser cette méthode vide si vous utilisez bcrypt ou argon2i/argon2id.
+        return null;
     }
 
-    /**
-     * @return Collection<int, BlogArticle>
-     */
-    public function getViewedArticles(): Collection
+    public function getUserIdentifier(): string
     {
-        return $this->viewedArticles;
+        return (string) $this->email;
     }
 
-    public function addViewedArticle(BlogArticle $viewedArticle): static
+    public function eraseCredentials() : void
     {
-        if (!$this->viewedArticles->contains($viewedArticle)) {
-            $this->viewedArticles->add($viewedArticle);
-            $viewedArticle->addIsRead($this);
-        }
-
-        return $this;
+        // ici on erase toutes les données sensibles/confidentielles
     }
 
-    public function removeViewedArticle(BlogArticle $viewedArticle): static
-    {
-        if ($this->viewedArticles->removeElement($viewedArticle)) {
-            $viewedArticle->removeIsRead($this);
-        }
-
-        return $this;
-    }
+    // Voir si on ajoute encore d'autres méthodes ici
 }
