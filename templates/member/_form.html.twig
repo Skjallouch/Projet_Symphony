@@ -1,13 +1,25 @@
 {{ form_start(form, {'attr': {'class': 'custom-form'}}) }}
 
-{% for child in form %}
-    {# Appliquer la classe 'custom-input' à tous les widgets de formulaire sauf le bouton #}
-    {% if child.vars.name != '_token' %}
-        {{ form_row(child, {'attr': {'class': 'custom-input'}}) }}
-    {% endif %}
-{% endfor %}
+<table>
+    <tr>
+        <td width="200">{{ form_label(form.firstName) }}</td>
+        <td width="300">{{ form_widget(form.firstName, {'attr': {'class': 'custom-input'}}) }}</td>
+        <td width="200">{{ form_label(form.lastName) }}</td>
+        <td>{{ form_widget(form.lastName, {'attr': {'class': 'custom-input'}}) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.email) }}</td>
+        <td colspan="3">{{ form_widget(form.email, {'attr': {'class': 'custom-input'}}) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.password.first) }}</td>
+        <td>{{ form_widget(form.password.first, {'attr': {'class': 'custom-input'}}) }}</td>
+        <td>{{ form_label(form.password.second) }}</td>
+        <td>{{ form_widget(form.password.second, {'attr': {'class': 'custom-input'}}) }}</td>
+    </tr>
+</table>
 
-{# Appliquer la classe 'custom-button' au bouton #}
 <button type="submit" class="custom-button">{{ button_label|default('Save') }}</button>
 
 {{ form_end(form) }}
+
