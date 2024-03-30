@@ -1,4 +1,25 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_start(form, {'attr': {'class': 'custom-form'}}) }}
+<table>
+    <tr>
+        <td width="150">{{ form_label(form.faceShape) }}</td>
+        <td>{{ form_widget(form.faceShape, {'attr': {'class': 'custom-input'}}) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.eyeColor) }}</td>
+        <td>{{ form_widget(form.eyeColor, {'attr': {'class': 'custom-input'}}) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.skinColor) }}</td>
+        <td>{{ form_widget(form.skinColor, {'attr': {'class': 'custom-input'}}) }}</td>
+    </tr>
+    <!--
+    <tr>
+        <td>{{ form_label(form.idHair) }}</td>
+        <td>{{ form_widget(form.idHair, {'attr': {'class': 'custom-input'}}) }}</td>
+    </tr>
+    -->
+</table>
+<div style="text-align: center; margin-top: 20px;">
+    <button type="submit" class="custom-button">{{ button_label|default('Save') }}</button>
+</div>
 {{ form_end(form) }}
