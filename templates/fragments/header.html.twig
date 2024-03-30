@@ -2,7 +2,7 @@
     <div class="d-flex justify-content-between align-items-center py-3">
 
         <div class="d-flex align-items-center pl-3">
-        <a href = "/"><img src="{{ asset('images/logo_TSM.PNG') }}" height="170" alt="Logo"></a>
+            <a href="/"><img src="{{ asset('images/logo_TSM.PNG') }}" height="170" alt="Logo"></a>
         </div>
         <div class="text-center" style="font-family: 'Apple Chancery', cursive; color: #afa4ce;">
             <div style="font-family: 'Kaushan Script', cursive; font-size: 38px; color: #afa4ce;">Vos cheveux, notre expertise</div>
@@ -10,13 +10,8 @@
 
         </div>
         <div class="d-flex align-items-center">
-            <div class="d-flex flex-column align-items-center mx-1">
-                <img src="{{ asset('images/sac-de-courses.png') }}" height="30" alt="Panier">
-                <span style="font-size: 10px;">Mon Panier</span>
-            </div>
-            <div class="d-flex flex-column align-items-center mx-1">
-                <img src="{{ asset('images/connexion.png') }}" height="30" alt="Connexion">
-                <span style="font-size: 10px;">Se connecter</span>
+            <div class="ml-auto">
+                <a href="{{ path('app_login') }}"><img src="{{ asset('images/hair.png') }}" height="70" alt="Connexion"></a>
             </div>
         </div>
     </div>
@@ -26,6 +21,5 @@
         <a href="/advice" class="nav-item nav-link" style="color: #FFFFFF;">Nos conseils de grand-mère</a>
         <a href="/recettes" class="nav-item nav-link" style="color: #FFFFFF;">Nos superbes recettes</a>
         <a href="#" class="nav-item nav-link" style="color: #FFFFFF;">A propos de vous</a>
-
     </nav>
 </header>
