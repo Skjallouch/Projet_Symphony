@@ -17,7 +17,7 @@ class PhysicalTraitsController extends AbstractController
     #[Route('/', name: 'app_physical_traits_index', methods: ['GET'])]
     public function index(PhysicalTraitsRepository $physicalTraitsRepository): Response
     {
-        return $this->render('physical_traits/index.html.twig', [
+        return $this->render('physical_traits/login.html.twig', [
             'physical_traits' => $physicalTraitsRepository->findAll(),
         ]);
     }

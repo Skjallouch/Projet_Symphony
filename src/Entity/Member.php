@@ -39,6 +39,8 @@ class Member implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="json")
      */
     private array $roles = [];
+    private ?string $resetToken;
+
 
     public function __construct()
     {
@@ -102,7 +104,6 @@ class Member implements UserInterface, PasswordAuthenticatedUserInterface
     public function getRoles(): array
     {
         $roles = $this->roles;
-        // garantir que chaque utilisateur a au moins le rôle ROLE_USER
         $roles[] = 'ROLE_USER';
 
         return array_unique($roles);
@@ -132,4 +133,16 @@ class Member implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     // Voir si on ajoute encore d'autres méthodes ici
+    public function getResetToken(): ?string
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(?string $token): self
+    {
+        $this->resetToken = $token;
+
+        return $this;
+    }
+
 }
