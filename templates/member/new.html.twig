@@ -3,9 +3,10 @@
 {% block title %}New Member{% endblock %}
 
 {% block body %}
-    <h1>Create new Member</h1>
+    <div style="padding-left: 20px; padding-right: 20px;">
+    <div style="font-family: 'Kaushan Script', cursive; color: #afa4ce; font-size: 30px;">Création compte</div>
 
     {{ include('member/_form.html.twig') }}
 
-    <a href="{{ path('app_member_index') }}">back to list</a>
+    </div>
 {% endblock %}

@@ -1,7 +1,13 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
+{{ form_start(form, {'attr': {'class': 'custom-form'}}) }}
 
+{% for child in form %}
+    {# Appliquer la classe 'custom-input' à tous les widgets de formulaire sauf le bouton #}
+    {% if child.vars.name != '_token' %}
+        {{ form_row(child, {'attr': {'class': 'custom-input'}}) }}
+    {% endif %}
+{% endfor %}
 
+{# Appliquer la classe 'custom-button' au bouton #}
+<button type="submit" class="custom-button">{{ button_label|default('Save') }}</button>
 
-    <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

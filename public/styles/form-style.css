@@ -1,0 +1,25 @@
+.custom-form {
+    background-color: rgba(175, 164, 206, 0.25);
+    padding: 20px;
+    border-radius: 15px;
+}
+
+.custom-form input[type="text"],
+.custom-form select {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+}
+
+.custom-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.custom-button {
+    background-color: #0056b3;
+}
