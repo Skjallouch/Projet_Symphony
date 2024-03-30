@@ -4,7 +4,8 @@
 
 {% block body %}
     <div class="container mt-5">
-        <h2>Connexion</h2>
+        <div style="font-family: 'Kaushan Script', cursive; color: #afa4ce; font-size: 32px;">Connexion</div>
+        <br>
         {% if error %}
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
@@ -20,10 +21,11 @@
                 <input type="password" name="password" id="inputPassword" class="form-control" required>
             </div>
 
-            <button type="submit" class="btn btn-primary">Se connecter</button>
+            <br>
+            <button type="submit" class="custom-button">Se connecter</button>
         </form>
         <div class="mt-3">
-            <a href="{{ path('app_member_new') }}">Créer un compte</a> | <a href="{{ path('app_forgot_password') }}">Mot de passe oublié?</a>
+            <a href="{{ path('app_member_new') }}" style="color: mediumpurple">Créer un compte</a> | <a href="{{ path('app_forgot_password') }}" style="color: mediumpurple">Mot de passe oublié?</a>
         </div>
 
     </div>
