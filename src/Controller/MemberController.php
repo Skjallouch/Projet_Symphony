@@ -18,7 +18,7 @@ class MemberController extends AbstractController
     #[Route('/', name: 'app_member_index', methods: ['GET'])]
     public function index(MemberRepository $memberRepository): Response
     {
-        return $this->render('member/login.html.twig', [
+        return $this->render('security/login.html.twig', [
             'members' => $memberRepository->findAll(),
         ]);
     }

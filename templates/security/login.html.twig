@@ -6,9 +6,6 @@
     <div class="container mt-5">
         <div style="font-family: 'Kaushan Script', cursive; color: #afa4ce; font-size: 32px;">Connexion</div>
         <br>
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
 
         <form method="post">
             <div class="form-group">
