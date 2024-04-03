@@ -31,8 +31,8 @@ class UserLoginAuthenticator extends AbstractAuthenticator
 
     public function authenticate(Request $request): Passport
     {
-        $email = $request->request->get('email');
-        $password = $request->request->get('password');
+        $email = $request->request->get('email'); // Changement de _username à email
+        $password = $request->request->get('password'); // Changement de _password à password
         return new Passport(
             new UserBadge($email),
             new PasswordCredentials($password)
@@ -40,11 +40,15 @@ class UserLoginAuthenticator extends AbstractAuthenticator
     }
 
 
+
     public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
     {
+        var_dump("succes");
         $targetUrl = $this->urlGenerator->generate('app_home');
         return new RedirectResponse($targetUrl);
     }
+
+
 
     public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response
     {

@@ -21,9 +21,11 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
         $error = $authenticationUtils->getLastAuthenticationError();
-        $lastUsername = $authenticationUtils->getLastUsername();
-
-        return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
+        $lastEmail = $authenticationUtils->getLastUsername();
+        return $this->render('security/login.html.twig', [
+            'last_email' => $lastEmail,
+            'error' => $error
+        ]);
     }
 
     #[Route('/logout', name: 'app_logout', methods: ['GET'])]
@@ -31,6 +33,7 @@ class SecurityController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
 
     #[Route('/forgot-password', name: 'app_forgot_password')]
     public function forgotPassword(Request $request, MemberRepository $userRepository, EntityManagerInterface $entityManager, MailerInterface $mailer, TokenGeneratorInterface $tokenGenerator, UrlGeneratorInterface $urlGenerator): Response
@@ -40,20 +43,21 @@ class SecurityController extends AbstractController
             $user = $userRepository->findOneByEmail($email);
 
             if ($user) {
-                $token = $tokenGenerator->generateToken();
-                $user->setResetToken($token);
+                do {
+                    $token = bin2hex(random_bytes(16)); // Génère un nouveau token
+                    $existingUser = $userRepository->findOneByResetToken($token); // Vérifie si le token est déjà utilisé
+                } while ($existingUser !== null); // Répète la génération si le token existe déjà
 
+                $user->setResetToken($token);
                 $entityManager->persist($user);
                 $entityManager->flush();
 
                 $resetUrl = $this->generateUrl('app_reset_password', ['token' => $token], UrlGeneratorInterface::ABSOLUTE_URL);
                 $emailMessage = (new Email())
-                    ->from('noreply@example.com')
+                    ->from('noreply@example.com') // Remplacez par votre adresse e-mail d'envoi
                     ->to($user->getEmail())
                     ->subject('Réinitialisation de votre mot de passe')
-                    ->html($this->renderView('emails/reset_password.html.twig', [
-                        'resetUrl' => $resetUrl
-                    ]));
+                    ->html("<p>Pour réinitialiser votre mot de passe, veuillez cliquer sur le lien suivant : <a href='$resetUrl'>Réinitialiser mon mot de passe</a>.</p>");
 
                 try {
                     $mailer->send($emailMessage);
@@ -61,6 +65,23 @@ class SecurityController extends AbstractController
                 } catch (TransportExceptionInterface $e) {
                     $this->addFlash('error', 'Un problème est survenu lors de l\'envoi de l\'e-mail de réinitialisation.');
                 }
+
+                try {
+                    $token = bin2hex(random_bytes(16));
+                } catch (\Exception $e) {
+                    // Log l'erreur, informe l'utilisateur d'un problème technique, etc.
+                    $this->addFlash('error', 'Un problème technique est survenu. Veuillez réessayer plus tard.');
+                    return $this->redirectToRoute('app_forgot_password'); // Redirigez vers une route appropriée
+                }
+
+                try {
+                    $user = $userRepository->findOneByEmail($email);
+                } catch (\Doctrine\ORM\NonUniqueResultException $e) {
+                    // Log l'erreur, informe l'utilisateur d'un problème technique, etc.
+                    $this->addFlash('error', 'Plusieurs utilisateurs ont été trouvés avec le même e-mail. Veuillez contacter l\'assistance.');
+                   return $this->redirectToRoute('app_forgot_password'); // Redirigez vers une route appropriée
+                }
+
 
                 return $this->redirectToRoute('app_login');
             } else {
@@ -70,4 +91,30 @@ class SecurityController extends AbstractController
 
         return $this->render('security/forgot_password.html.twig');
     }
+
+
+    #[Route('/reset-password/{token}', name: 'app_reset_password')]
+    public function resetPassword(Request $request, EntityManagerInterface $entityManager, MemberRepository $userRepository, string $token): Response
+    {
+        $user = $userRepository->findOneByResetToken($token);
+        if (!$user) {
+            $this->addFlash('error', 'Token invalide.');
+            return $this->redirectToRoute('app_login');
+        }
+
+        if ($request->isMethod('POST')) {
+            $user->setPassword(/* Nouveau mot de passe hashé */);
+            $user->setResetToken(null); // Efface le token de réinitialisation
+            $entityManager->flush();
+
+            $this->addFlash('success', 'Mot de passe réinitialisé avec succès.');
+            return $this->redirectToRoute('app_login');
+        }
+
+        // Affiche le formulaire de réinitialisation du mot de passe
+        return $this->render('security/reset_password.html.twig', [
+            'token' => $token
+        ]);
+    }
+
 }

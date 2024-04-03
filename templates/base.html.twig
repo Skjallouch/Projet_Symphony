@@ -15,6 +15,20 @@
     <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
     <link href="{{ asset('styles/form-style.css') }}" rel="stylesheet">
 
+    {% block stylesheets %}
+        <style>
+            @keyframes fadeIn {
+                from { opacity: 0; }
+                to { opacity: 1; }
+            }
+
+            .fadeIn {
+                animation: fadeIn ease 4s;
+                animation-fill-mode: forwards;
+            }
+        </style>
+    {% endblock %}
+
 </head>
 
 <body>

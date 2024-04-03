@@ -59,5 +59,15 @@ class MemberRepository extends ServiceEntityRepository
     }
 
 
+    public function findOneByResetToken(string $token): ?Member
+    {
+        return $this->createQueryBuilder('m')
+            ->where('m.resetToken = :token')
+            ->setParameter('token', $token)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
+
+
 
 }
