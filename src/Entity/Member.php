@@ -39,8 +39,9 @@ class Member implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Column(type="json")
      */
     private array $roles = [];
-    private ?string $resetToken;
 
+    #[ORM\Column(type: "string", length: 255, nullable: true)]
+    private ?string $resetToken;
 
     public function __construct()
     {

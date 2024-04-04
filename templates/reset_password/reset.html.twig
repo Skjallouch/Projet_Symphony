@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Change Password{% endblock %}
+
+{% block body %}
+    <h2>Change Password</h2>
+
+    {{ form_start(changePasswordForm) }}
+    {{ form_row(changePasswordForm.plainPassword.first, {
+        label: 'New Password'
+    }) }}
+    {{ form_row(changePasswordForm.plainPassword.second, {
+        label: 'Repeat New Password'
+    }) }}
+
+    <button type="submit" class="btn btn-success">Change Password</button>
+    {{ form_end(changePasswordForm) }}
+{% endblock %}
