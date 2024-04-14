@@ -77,7 +77,4 @@ class SecurityController extends AbstractController
             'changePasswordForm' => $form->createView(), // Ensure this variable is passed to your template
         ]);
     }
-
-
-
 }
