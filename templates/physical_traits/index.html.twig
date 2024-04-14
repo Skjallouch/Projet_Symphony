@@ -35,17 +35,17 @@
                 <td>{{ physical_trait.hair.cutcut }}</td>
                 <td>{{ physical_trait.hair.coloration }}</td>
                 <td>
-                    <a href="{{ path('app_physical_traits_show', {'id': physical_trait.id}) }}">show</a>
-                    <a href="{{ path('app_physical_traits_edit', {'id': physical_trait.id}) }}">edit</a>
+                    <a href="{{ path('app_physical_traits_show', {'id': physical_trait.id}) }}">Afficher</a>
+                    <a href="{{ path('app_physical_traits_edit', {'id': physical_trait.id}) }}">Éditer</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Pas d'enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('app_physical_traits_new') }}">Create new</a>
+    <a href="{{ path('app_physical_traits_new') }}">Créer un nouveau</a>
 {% endblock %}
