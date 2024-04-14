@@ -22,8 +22,9 @@
         <td>{{ form_widget(form.password.second, {'attr': {'class': 'custom-input'}}) }}</td>
     </tr>
 </table>
-<button type="submit" class="custom-button" style="position: absolute; top: 550px;">{{ button_label|default('Save') }}</button>
-
+<div style="text-align: center; margin-top: 20px;">
+    <button type="submit" class="custom-button">{{ button_label|default('Save') }}</button>
+</div>
 {{ form_end(form) }}
 
 

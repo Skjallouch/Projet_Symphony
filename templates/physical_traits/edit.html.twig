@@ -5,9 +5,9 @@
 {% block body %}
     <h1>Edit PhysicalTraits</h1>
 
-    {{ include('physical_traits/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('physical_traits/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
 
-    <a href="{{ path('app_physical_traits_index') }}">back to list</a>
+    <a href="{{ path('app_physical_traits_show', {'id': physical_trait.id}) }} }}">Votre profil</a>
 
     {{ include('physical_traits/_delete_form.html.twig') }}
 {% endblock %}

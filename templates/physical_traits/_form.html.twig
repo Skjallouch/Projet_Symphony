@@ -2,22 +2,36 @@
 <table>
     <tr>
         <td width="150">{{ form_label(form.faceShape) }}</td>
-        <td>{{ form_widget(form.faceShape, {'attr': {'class': 'custom-input'}}) }}</td>
+        <td>{{ form_widget(form.faceShape, {'attr': {'class': 'form-select'}}) }}</td>
     </tr>
     <tr>
         <td>{{ form_label(form.eyeColor) }}</td>
-        <td>{{ form_widget(form.eyeColor, {'attr': {'class': 'custom-input'}}) }}</td>
+        <td>{{ form_widget(form.eyeColor, {'attr': {'class': 'form-select'}}) }}</td>
     </tr>
     <tr>
         <td>{{ form_label(form.skinColor) }}</td>
-        <td>{{ form_widget(form.skinColor, {'attr': {'class': 'custom-input'}}) }}</td>
+        <td>{{ form_widget(form.skinColor, {'attr': {'class': 'form-select'}}) }}</td>
     </tr>
-    <!--
     <tr>
-        <td>{{ form_label(form.idHair) }}</td>
-        <td>{{ form_widget(form.idHair, {'attr': {'class': 'custom-input'}}) }}</td>
+        <td>{{ form_label(form.hair.hairType) }}</td>
+        <td>{{ form_widget(form.hair.hairType, {'attr': {'class': 'form-select'}}) }}</td>
     </tr>
-    -->
+    <tr>
+        <td>{{ form_label(form.hair.hairColor) }}</td>
+        <td>{{ form_widget(form.hair.hairColor, {'attr': {'class': 'form-select'}}) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.hair.hairLength) }}</td>
+        <td>{{ form_widget(form.hair.hairLength, {'attr': {'class': 'form-select'}}) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.hair.cutcut) }}</td>
+        <td>{{ form_widget(form.hair.cutcut, {'attr': {'class': 'form-select'}}) }}</td>
+    </tr>
+    <tr>
+        <td>{{ form_label(form.hair.coloration) }}</td>
+        <td>{{ form_widget(form.hair.coloration, {'attr': {'class': 'form-select'}}) }}</td>
+    </tr>
 </table>
 <div style="text-align: center; margin-top: 20px;">
     <button type="submit" class="custom-button">{{ button_label|default('Save') }}</button>

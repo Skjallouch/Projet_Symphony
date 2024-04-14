@@ -9,9 +9,15 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>FaceShape</th>
-                <th>EyeColor</th>
-                <th>SkinColor</th>
+                <th>Membre</th>
+                <th>Forme du visage</th>
+                <th>Couleur de yeux</th>
+                <th>Couleur de peau</th>
+                <th>Type de cheveux</th>
+                <th>Couleur de cheveux</th>
+                <th>Longueur de cheveux</th>
+                <th>Cutcut</th>
+                <th>Coloration</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,9 +25,15 @@
         {% for physical_trait in physical_traits %}
             <tr>
                 <td>{{ physical_trait.id }}</td>
+                <td>{{ physical_trait.member.email }}</td>
                 <td>{{ physical_trait.faceShape }}</td>
                 <td>{{ physical_trait.eyeColor }}</td>
                 <td>{{ physical_trait.skinColor }}</td>
+                <td>{{ physical_trait.hair.hairType }}</td>
+                <td>{{ physical_trait.hair.hairColor }}</td>
+                <td>{{ physical_trait.hair.hairLength }}</td>
+                <td>{{ physical_trait.hair.cutcut }}</td>
+                <td>{{ physical_trait.hair.coloration }}</td>
                 <td>
                     <a href="{{ path('app_physical_traits_show', {'id': physical_trait.id}) }}">show</a>
                     <a href="{{ path('app_physical_traits_edit', {'id': physical_trait.id}) }}">edit</a>

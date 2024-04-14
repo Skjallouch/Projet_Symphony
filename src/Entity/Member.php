@@ -29,6 +29,9 @@ class Member implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 100)]
     private ?string $password = null;
 
+    #[ORM\OneToOne(mappedBy: 'member', targetEntity: PhysicalTraits::class, cascade: ['persist', 'remove'])]
+    private ?PhysicalTraits $physicalTraits = null;
+
     #[ORM\OneToMany(mappedBy: 'idMember', targetEntity: Address::class, orphanRemoval: true)]
     private Collection $Has;
 
@@ -142,6 +145,28 @@ class Member implements UserInterface, PasswordAuthenticatedUserInterface
     public function setResetToken(?string $token): self
     {
         $this->resetToken = $token;
+
+        return $this;
+    }
+
+    public function getPhysicalTraits(): ?PhysicalTraits
+    {
+        return $this->physicalTraits;
+    }
+
+    public function setPhysicalTraits(?PhysicalTraits $physicalTraits): self
+    {
+        // unset the owning side of the relation if necessary
+        if ($physicalTraits === null && $this->physicalTraits !== null) {
+            $this->physicalTraits->setMember(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($physicalTraits !== null && $physicalTraits->getMember() !== $this) {
+            $physicalTraits->setMember($this);
+        }
+
+        $this->physicalTraits = $physicalTraits;
 
         return $this;
     }

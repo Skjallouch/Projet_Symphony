@@ -22,8 +22,14 @@ class PhysicalTraits
     #[ORM\Column(length: 150)]
     private ?string $skinColor = null;
 
-    #[ORM\OneToOne(mappedBy: 'isA', cascade: ['persist', 'remove'])]
-    private ?Hair $idHair = null;
+    #[ORM\OneToOne(inversedBy: 'physicalTraits', targetEntity: Member::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Member $member = null;
+
+    #[ORM\OneToOne(targetEntity: Hair::class, cascade: ['persist', 'remove'])]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Hair $hair = null;
+
 
     public function getId(): ?int
     {
@@ -66,20 +72,28 @@ class PhysicalTraits
         return $this;
     }
 
-    public function getIdHair(): ?Hair
+    public function getMember(): ?Member
     {
-        return $this->idHair;
+        return $this->member;
     }
 
-    public function setIdHair(Hair $idHair): static
+    public function setMember(Member $member): self
     {
-        // set the owning side of the relation if necessary
-        if ($idHair->getIsA() !== $this) {
-            $idHair->setIsA($this);
-        }
-
-        $this->idHair = $idHair;
+        $this->member = $member;
 
         return $this;
     }
+
+    public function getHair(): ?Hair
+    {
+        return $this->hair;
+    }
+
+    public function setHair(Hair $hair): self
+    {
+        $this->hair = $hair;
+
+        return $this;
+    }
+
 }

@@ -21,8 +21,11 @@ class Hair
     #[ORM\Column(length: 150)]
     private ?string $hairType = null;
 
-    #[ORM\Column]
-    private ?bool $Decoloration = null;
+    #[ORM\Column(length: 150)]
+    private ?string $coloration = null;
+
+    #[ORM\Column(length: 150)]
+    private ?string $cutcut = null;
 
     #[ORM\Column(length: 150)]
     private ?string $hairColor = null;
@@ -30,9 +33,8 @@ class Hair
     #[ORM\ManyToMany(targetEntity: HairProduct::class)]
     private Collection $Use;
 
-    #[ORM\OneToOne(inversedBy: 'idHair', cascade: ['persist', 'remove'])]
-    #[ORM\JoinColumn(nullable: false)]
-    private ?PhysicalTraits $isA = null;
+    #[ORM\OneToOne(mappedBy: "hair", targetEntity: PhysicalTraits::class)]
+    private ?PhysicalTraits $physicalTraits = null;
 
     public function __construct()
     {
@@ -68,14 +70,26 @@ class Hair
         return $this;
     }
 
-    public function isDecoloration(): ?bool
+    public function getColoration(): ?string
     {
-        return $this->Decoloration;
+        return $this->coloration;
     }
 
-    public function setDecoloration(bool $Decoloration): static
+    public function setColoration(string $coloration): static
     {
-        $this->Decoloration = $Decoloration;
+        $this->coloration = $coloration;
+
+        return $this;
+    }
+
+    public function getCutcut(): ?string
+    {
+        return $this->cutcut;
+    }
+
+    public function setCutcut(string $cutcut): static
+    {
+        $this->cutcut = $cutcut;
 
         return $this;
     }
@@ -88,6 +102,27 @@ class Hair
     public function setHairColor(string $hairColor): static
     {
         $this->hairColor = $hairColor;
+
+        return $this;
+    }
+
+    public function getPhysicalTraits(): ?PhysicalTraits
+    {
+        return $this->physicalTraits;
+    }
+
+    public function setPhysicalTraits(?PhysicalTraits $physicalTraits): self
+    {
+        if ($physicalTraits === null && $this->physicalTraits !== null) {
+            $this->physicalTraits->setHair(null);
+        }
+
+        // set the owning side of the relation if necessary
+        if ($physicalTraits !== null && $physicalTraits->getMember() !== $this) {
+            $physicalTraits->setHair($this);
+        }
+
+        $this->physicalTraits = $physicalTraits;
 
         return $this;
     }
@@ -112,18 +147,6 @@ class Hair
     public function removeUse(HairProduct $use): static
     {
         $this->Use->removeElement($use);
-
-        return $this;
-    }
-
-    public function getIsA(): ?PhysicalTraits
-    {
-        return $this->isA;
-    }
-
-    public function setIsA(PhysicalTraits $isA): static
-    {
-        $this->isA = $isA;
 
         return $this;
     }

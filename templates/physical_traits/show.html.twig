@@ -8,27 +8,68 @@
     <table class="table">
         <tbody>
             <tr>
+                <th>Membre</th>
+                <td>{{ physical_trait.member.email }}</td>
+            </tr>
+            <tr>
                 <th>Id</th>
                 <td>{{ physical_trait.id }}</td>
             </tr>
             <tr>
-                <th>FaceShape</th>
+                <th>Forme du visage</th>
                 <td>{{ physical_trait.faceShape }}</td>
             </tr>
             <tr>
-                <th>EyeColor</th>
+                <th>Couleur de yeux</th>
                 <td>{{ physical_trait.eyeColor }}</td>
             </tr>
             <tr>
-                <th>SkinColor</th>
+                <th>Couleur de peau</th>
                 <td>{{ physical_trait.skinColor }}</td>
+            </tr>
+            <tr>
+                <th>Type de cheveux</th>
+                <td>{{ physical_trait.hair.hairType }}</td>
+            </tr>
+            <tr>
+                <th>Couleur de cheveux</th>
+                <td>{{ physical_trait.hair.hairColor }}</td>
+            </tr>
+            <tr>
+                <th>Longueur de cheveux</th>
+                <td>{{ physical_trait.hair.hairLength }}</td>
+            </tr>
+            <tr>
+                <th>Cutcut</th>
+                <td>{{ physical_trait.hair.cutcut }}</td>
+            </tr>
+            <tr>
+                <th>Coloration</th>
+                <td>{{ physical_trait.hair.coloration }}</td>
+            </tr>
+            <tr>
+                <th>Recommandation de coupe de cheveux</th>
+                <td>
+                    <b>{{ haircut }}</b>
+                    {% if haircut == 'Coupe Chelsea' %}
+                        <p style="margin-top: 10px">La coupe Chelsea est conçue spécifiquement pour les personnes avec un visage ovale et des cheveux noirs de longueur mi-longue. Cette coupe, offrant un look équilibré et harmonieux, se caractérise par des boucles souples et une frange asymétrique qui met en valeur les lignes douces du visage ovale. Les cheveux sont légèrement dégradés pour réduire le volume, ce qui convient particulièrement bien aux cheveux épais. L'aspect professionnel est renforcé par une coloration subtile qui accentue les boucles et donne une impression de mouvement naturel. Les personnalités célèbres comme Kerry Washington et Emma Watson ont été vues arborant des variantes de cette coupe, qui tire son nom des quartiers chic de Londres, connus pour leur avant-gardisme en matière de mode.</p>
+                    {% elseif haircut == 'Coupe Bob Moderne' %}
+                        <p style="margin-top: 10px">La coupe Bob moderne est idéale pour les visages carrés avec une chevelure brun clair coupée au carré. Cette version actualisée du bob classique intègre une raie sur le côté pour adoucir les traits anguleux du visage carré et une légère asymétrie pour ajouter un intérêt visuel. La coupe est texturisée pour donner une sensation de volume et de légèreté, ce qui est particulièrement efficace pour équilibrer la largeur du front et de la mâchoire. Ce style est fréquemment choisi par des célébrités comme Keira Knightley et Lucy Hale, qui apprécient son élégance facile et sa facilité de maintenance.</p>
+                    {% elseif haircut == 'Long Layers Glamour' %}
+                        <p style="margin-top: 10px">Les longs layers glamour conviennent parfaitement aux visages en forme de cœur et aux cheveux blond foncé de longueur longue. Cette coupe est composée de plusieurs niveaux de couches qui créent une texture et un mouvement fluides, ce qui ajoute du volume en bas du visage pour équilibrer la largeur des pommettes et le menton pointu. La coloration ombrée renforce la profondeur et la dimension des cheveux. Des franges effilées ou latérales peuvent compléter le look en adoucissant le front large. Des célébrités comme Reese Witherspoon et Jennifer Aniston ont popularisé cette coupe, qui est souvent choisie pour son allure sophistiquée et féminine.</p>
+                    {% elseif haircut == 'Pixie Texturé' %}
+                        <p style="margin-top: 10px">Le pixie texturé est parfait pour les personnes avec un visage rond et des cheveux gris coupés courts. Cette coupe met en valeur les traits en ajoutant de la hauteur au sommet de la tête, ce qui aide à allonger visuellement le visage rond. Les couches texturées offrent modernité et fraîcheur, tandis que les mèches plus longues à l'avant peuvent être stylisées de côté pour un effet adoucissant. Des personnalités comme Judi Dench et Helen Mirren ont favorisé ce style, qui est non seulement élégant mais aussi extrêmement facile à entretenir.</p>
+                    {% else %}
+                        <p style="margin-top: 10px">Le Lob Polyvalent est une coupe de cheveux mi-longue qui s'arrête généralement juste au-dessus des épaules. Cette coupe est incroyablement adaptable et peut être stylisée de différentes manières, ce qui la rend parfaite pour presque tous les types de visages et de cheveux. La longueur permet suffisamment de flexibilité pour des coiffures bouclées, lisses, ondulées ou même en chignon. De plus, elle peut être personnalisée avec différents types de franges ou de mèches pour flatter davantage la forme du visage. Sa polyvalence fait du Lob un choix privilégié pour ceux qui cherchent une coupe à la fois moderne et capable de s'adapter à diverses occasions, allant du professionnel au décontracté. C'est une coupe intemporelle qui a été adoptée par de nombreuses célébrités et stylistes pour son élégance simple et son entretien facile.</p>
+                    {% endif %}
+                </td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('app_physical_traits_index') }}">back to list</a>
+    <a href="{{ path('app_member_show', {'id': physical_trait.member.id}) }}">Votre profil</a>
 
-    <a href="{{ path('app_physical_traits_edit', {'id': physical_trait.id}) }}">edit</a>
+    <a href="{{ path('app_physical_traits_edit', {'id': physical_trait.id}) }}">Éditer</a>
 
     {{ include('physical_traits/_delete_form.html.twig') }}
 {% endblock %}

@@ -24,6 +24,10 @@
         <a href="#" class="nav-item nav-link" style="color: #FFFFFF;">Nos produits phares</a>
         <a href="/advice" class="nav-item nav-link" style="color: #FFFFFF;">Nos conseils de grand-mère</a>
         <a href="/recettes" class="nav-item nav-link" style="color: #FFFFFF;">Nos superbes recettes</a>
-        <a href="#" class="nav-item nav-link" style="color: #FFFFFF;">A propos de vous</a>
+        {% if app.user %}
+            <a href="/member/{{ app.user.id }}" class="nav-item nav-link" style="color: #FFFFFF;">A propos de vous</a>
+        {% else %}
+            <a href="/login" class="nav-item nav-link" style="color: #FFFFFF;">A propos de vous</a>
+        {% endif %}
     </nav>
 </header>
