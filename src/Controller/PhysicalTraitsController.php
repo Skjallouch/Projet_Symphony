@@ -95,17 +95,17 @@ class PhysicalTraitsController extends AbstractController
         }
 
         // Conditions pour la Coupe Bob Moderne
-        if ($faceShape === 'carré' && in_array($cutCut, ['carré', 'carré bob']) && $hairLength === 'coupe au carré') {
+        if ($faceShape === 'carré' && ($hairLength === 'carré' || $hairLength === 'carré bob') && $hairType === 'raide') {
             return 'Coupe Bob Moderne';
         }
 
         // Conditions pour Long Layers Glamour
-        if ($faceShape === 'coeur' && $hairLength === 'longue' && in_array($cutCut, ['ondulée', 'coupe en dégradé'])) {
+        if ($faceShape === 'coeur' && $hairLength === 'longue' && ($hairType === 'ondulé' || $hairType === 'bouclé')) {
             return 'Long Layers Glamour';
         }
 
         // Conditions pour Pixie Texturé
-        if ($faceShape === 'rond' && $hairLength === 'courte' && in_array($cutCut, ['coupe courte', 'coupe au rasoir'])) {
+        if ($faceShape === 'rond' && $hairLength === 'courte' && ($cutCut === 'asymétrique' || $cutCut === 'effilée')) {
             return 'Pixie Texturé';
         }
 
