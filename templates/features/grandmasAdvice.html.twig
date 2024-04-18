@@ -3,29 +3,29 @@
 {% block title %}Hello GrandmasAdviceController!{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-    .advice { font-family: Lalezar; color: #afa4ce; }
-    a { color : mediumpurple; }
-    .advice-block { font-family: 'Indie Flower'; font-size: 20px; color: #000000; text-align: justify; }
-    .advice-block-padding { padding-left: 120px; padding-right: 120px; padding-top: 20px; padding-bottom: 20px;}
-    .advice-title { font-family: 'Inter'; font-size: 22px; color: #afa4ce; text-align: center; }
-</style>
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+        .advice { font-family: Lalezar; color: #afa4ce; }
+        a { color: black; text-decoration: none; }
+        .advice-block { font-family: 'Indie Flower'; font-size: 20px; color: #000000; text-align: justify; }
+        .advice-block-padding { padding-left: 120px; padding-right: 120px; padding-top: 20px; padding-bottom: 20px;}
+        .advice-title { font-family: 'Inter'; font-size: 22px; color: #afa4ce; text-align: center; }
+    </style>
 
     <table>
         <tr>
             <td rowspan="6" style="font-family: 'Kaushan Script', cursive; font-size: 15px; color: #000000; background-color: #D9D9D9; padding-left: 20px; padding-right: 20px; vertical-align: top;">
                 <br>
-                pousse rapide
+                <a href="#pousse-rapide">pousse rapide</a>
                 <hr>
-                fortifier et épaisir
+                <a href="#fortifier">fortifier et épaisir</a>
                 <hr>
-                donner de l'éclat et de la brillance
+                <a href="#brillance">donner de l'éclat et de la brillance</a>
                 <hr>
-                se débarasser des pellicules
+                <a href="#pellicules">se débarasser des pellicules</a>
                 <hr>
-                cheveux gras
+                <a href="#cheveux-gras">cheveux gras</a>
                 <hr>
                 cheveux secs
                 <hr>
@@ -48,7 +48,7 @@
         </tr>
         <tr>
             <td class="advice-block-padding">
-                <p class="advice-title">LA POUSSE RAPIDE</p>
+                <p class="advice-title" id="pousse-rapide">LA POUSSE RAPIDE</p>
                 <div class="advice-block">
                     Voici 6 astuces pour limiter la chute de cheveux et la vivre la plus sereinement:
                     <br>
@@ -66,7 +66,7 @@
                             <span class="advice">Dors quand tu le peux</span> (je sais que ce n’est pas évident du tout mais le sommeil joue aussi sur la santé des cheveux).
                         </li>
                         <li>
-                            <span class="advice">Masse ton cuir chevelu</span>, du bout des doigts propres ou avec <span class="advice">la <a href="https://cutbyfred.com/products/scalp-brush?variant=41549974077633&currency=EUR&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0Goi8EeTbNUYO9QqYWtc90Q0-DH6ylaAfCIYI8KPGrtpmhmJ4c_se19QaAtkWEALw_wcB">Stimulating Scalp Brush</a> de Cut By Fred</span> pour stimuler les racines :            1) sans produit ou avec une petite noisette de Gel d’Aloe Vera 5 minutes plusieurs fois par semaine et/ou 2) 1 à 2 fois par mois (et au moins 30min avant ton shampoing), avec une petite noisette d’Huile Végétale d’Avocat préalablement réchauffée dans le creux de tes mains. L’huile d’avocat limite la chute, stimule la pousse, apaise le cuir chevelu et fortifie les longueurs/pointes.
+                            <span class="advice">Masse ton cuir chevelu</span>, du bout des doigts propres ou avec <span class="advice">la <a href="https://cutbyfred.com/products/scalp-brush?variant=41549974077633&currency=EUR&utm_medium=product_sync&utm_source=google&utm_content=sag_organic&utm_campaign=sag_organic&gad_source=1&gclid=Cj0KCQjwhtWvBhD9ARIsAOP0Goi8EeTbNUYO9QqYWtc90Q0-DH6ylaAfCIYI8KPGrtpmhmJ4c_se19QaAtkWEALw_wcB" style="color: mediumpurple;">Stimulating Scalp Brush</a> de Cut By Fred</span> pour stimuler les racines :            1) sans produit ou avec une petite noisette de Gel d’Aloe Vera 5 minutes plusieurs fois par semaine et/ou 2) 1 à 2 fois par mois (et au moins 30min avant ton shampoing), avec une petite noisette d’Huile Végétale d’Avocat préalablement réchauffée dans le creux de tes mains. L’huile d’avocat limite la chute, stimule la pousse, apaise le cuir chevelu et fortifie les longueurs/pointes.
                         </li>
                         <li>
                             <span class="advice">Utilise une routine douce et saine</span> pour ne pas agresser ton cuir chevelu et ne fais <span class="advice">pas de lavage trop fréquent</span> (2 shampoings par semaine c’est top).
@@ -77,7 +77,7 @@
         </tr>
         <tr>
             <td class="advice-block-padding">
-                <p class="advice-title">FORTIFIER ET ÉPAISSIR</p>
+                <p class="advice-title" id="fortifier">FORTIFIER ET ÉPAISSIR</p>
                 <div class="advice-block">
                     <ol>
                         <li>
@@ -107,7 +107,7 @@
         </tr>
         <tr>
             <td class="advice-block-padding">
-                <p class="advice-title">DONNER DE L'ÉCLAT ET DE LA BRILLANCE</p>
+                <p class="advice-title" id="brillance">DONNER DE L'ÉCLAT ET DE LA BRILLANCE</p>
                 <div class="advice-block">
                     <ol>
                         <li>
@@ -137,7 +137,7 @@
         </tr>
         <tr>
             <td class="advice-block-padding">
-                <p class="advice-title">SE DÉBARASSER DES PELLICULES</p>
+                <p class="advice-title" id="pellicules">SE DÉBARASSER DES PELLICULES</p>
                 <div class="advice-block">
                     <ol>
                         <li>
@@ -164,7 +164,7 @@
         </tr>
         <tr>
             <td class="advice-block-padding">
-                <p class="advice-title">CHEVEUX GRAS</p>
+                <p class="advice-title" id="cheveux-gras">CHEVEUX GRAS</p>
                 <div class="advice-block">
                     <ol>
                         <li>
